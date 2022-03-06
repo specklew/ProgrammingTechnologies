@@ -2,3 +2,5 @@
 /.vs
 /SampleProgram/bin
 /SampleProgram/obj
+/SampleProgramTests/bin
+/SampleProgramTests/obj
