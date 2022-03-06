@@ -1,0 +1,4 @@
+*.sln
+/.vs
+/SampleProgram/bin
+/SampleProgram/obj
