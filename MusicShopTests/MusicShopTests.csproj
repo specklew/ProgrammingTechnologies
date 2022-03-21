@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SampleProgram\SampleProgram.csproj" />
+    <ProjectReference Include="..\MusicShop\MusicShop.csproj" />
   </ItemGroup>
 
 </Project>
