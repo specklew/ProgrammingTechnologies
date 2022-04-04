@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MusicShop.Data;
 
-namespace MusicShop
+namespace MusicShop.Tests
 {
     [TestClass]
     public class CustomerTests
@@ -10,7 +11,7 @@ namespace MusicShop
         {
             Customer customer = new Customer("John Doe", 10);
 
-            Assert.AreEqual("John Doe", customer.getName());
+            Assert.AreEqual("John Doe", customer.GetName());
         }
     }
 }
