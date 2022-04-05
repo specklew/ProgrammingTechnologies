@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MusicShop.Data
 {
-    public struct ProductLine
+    internal struct ProductLine
     {
         public Product Product { get; }
         public int NumberOfProducts { get; }

@@ -8,14 +8,14 @@ namespace MusicShop.Data
 {
     public abstract class DataLayerAPI
     {
+        internal DataContext? context;
         public abstract void Connect();
 
-        private class LinqToXml : DataLayerAPI
+        public static DataLayerAPI CreateDataRepository()
         {
-            public override void Connect()
-            {
-                throw new NotImplementedException();
-            }
+            //TODO: implement the data generation for data context.
+            DataContext data = new DataContext();
+            return new DataRepository(data);
         }
     }
 }

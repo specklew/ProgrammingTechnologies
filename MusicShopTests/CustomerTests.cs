@@ -9,9 +9,7 @@ namespace MusicShop.Tests
         [TestMethod]
         public void TestCustomerGetName()
         {
-            Customer customer = new Customer("John Doe", 10);
-
-            Assert.AreEqual("John Doe", customer.GetName());
+            //TODO: Write test for the customer class.
         }
     }
 }
