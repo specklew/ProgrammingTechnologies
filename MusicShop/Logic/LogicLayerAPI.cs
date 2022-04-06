@@ -7,9 +7,9 @@ using MusicShop.Data;
 
 namespace MusicShop.Logic
 {
-    internal abstract class LogicLayerAPI
+    public abstract class LogicLayerAPI
     {
-        internal static LogicLayerAPI CreateLayer(DataLayerAPI? data = default)
+        public static LogicLayerAPI CreateLayer(DataLayerAPI? data = default)
         {
             return new LogicLayer(data == null ? DataLayerAPI.CreateDataRepository() : data);
         }

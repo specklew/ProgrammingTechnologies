@@ -1,8 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MusicShop.Data;
 using System;
 
-namespace MusicShopTests.Data.Tests
+namespace MusicShop.Data.Tests
 {
     [TestClass]
     public class ConnectionTests

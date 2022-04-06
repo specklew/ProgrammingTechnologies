@@ -9,11 +9,13 @@ namespace MusicShop.Data
     internal abstract class Event
     {
         public IUser User { get; }
+        public State ShopState { get; }
         public DateTime EventTime { get; }
 
-        protected Event(IUser user)
+        protected Event(IUser user, State state)
         {
             User = user;
+            ShopState = state;
             EventTime = DateTime.Now;
         }
     }

@@ -8,13 +8,13 @@ namespace MusicShop.Data
 {
     internal class OrderEvent : Event
     {
-        public int OrderID { get; }
-        public OrderStatus Status { get; }
+        public ProductLine OrderedProduct { get; }
+        public OrderStatus Status { get; set; }
 
-        public OrderEvent(IUser user, int orderId, OrderStatus orderStatus) : base(user)
+        public OrderEvent(IUser user, ProductLine line, State state) : base(user, state)
         {
-            OrderID = orderId;
-            Status = orderStatus;
+            OrderedProduct = line;
+            Status = OrderStatus.Pending;
         }
     }
 }
