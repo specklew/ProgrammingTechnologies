@@ -9,7 +9,7 @@ namespace MusicShop.Data
     internal class DataContext
     {
         public ProductCatalog Catalog = new();
-        public List<Customer> Customers = new();
+        public List<IUser> Users = new();
         public List<State> States = new();
         public List<Event> Events = new();
     }

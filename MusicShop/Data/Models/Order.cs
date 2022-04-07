@@ -8,25 +8,15 @@ namespace MusicShop.Data
 {
     internal class Order
     {
-        public int Id { get; }
-        private OrderStatus status;
+        public string GUID { get; }
+        public OrderStatus Status { get; set; }
         private List<ProductLine> products;
 
-        public Order(int id, IEnumerable<ProductLine> productLines)
+        public Order(IEnumerable<ProductLine> productLines)
         {
-            this.Id = id;
-            this.status = OrderStatus.Pending;
-            this.products = new List<ProductLine>(productLines);
-        }
-
-        public void CancelOrder()
-        {
-            this.status = OrderStatus.Cancelled;
-        }
-
-        public void CompleteOrder()
-        {
-            this.status = OrderStatus.Completed;
+            GUID = Guid.NewGuid().ToString();
+            Status = OrderStatus.Pending;
+            products = new List<ProductLine>(productLines);
         }
     }
 }
