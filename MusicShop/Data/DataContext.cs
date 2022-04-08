@@ -10,7 +10,7 @@ namespace MusicShop.Data
     {
         public ProductCatalog Catalog = new();
         public List<IUser> Users = new();
-        public List<State> States = new();
+        public List<IState> States = new();
         public List<Event> Events = new();
     }
 }

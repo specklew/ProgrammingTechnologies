@@ -24,6 +24,13 @@ namespace MusicShop.Data
         //Data manipulation:
         //Create, Read, Update, Delete
 
+        //Event:
+
+        public void CreateOrderEvent(IUser user, IOrder order, OrderStatus status, IState state) 
+        {
+            context.Events.Add(new OrderEvent(user, order, status, state));
+        }
+
         //Catalog:
 
         public void CreateProduct(string name, string description, float price)

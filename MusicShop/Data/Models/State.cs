@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MusicShop.Data
 {
-    internal class State
+    internal class State : IState
     {
         public int Id { get; set; }
         public ProductCatalog Catalog { get; }
@@ -17,7 +17,7 @@ namespace MusicShop.Data
             Id = id;
             Catalog = catalog;
 
-            for(int i = 0; i < Catalog.Count; i++)
+            for (int i = 0; i < Catalog.Count; i++)
             {
                 productsQuantity.Add(i, 0);
             }
@@ -25,10 +25,10 @@ namespace MusicShop.Data
 
         public void SetProductsQuantity(Dictionary<Product, int> valuePairs)
         {
-            foreach(KeyValuePair<Product, int> pair in valuePairs)
+            foreach (KeyValuePair<Product, int> pair in valuePairs)
             {
                 SetProductQuantity(pair.Key, pair.Value);
-            }  
+            }
         }
 
         public void SetProductQuantity(Product product, int count)
@@ -44,7 +44,7 @@ namespace MusicShop.Data
         public Dictionary<Product, int> GetProductsQuantity()
         {
             Dictionary<Product, int> result = new Dictionary<Product, int>();
-            foreach(KeyValuePair<int, int> pair in productsQuantity)
+            foreach (KeyValuePair<int, int> pair in productsQuantity)
             {
                 result.Add(Catalog[pair.Key], pair.Value);
             }

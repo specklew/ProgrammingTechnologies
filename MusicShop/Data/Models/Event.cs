@@ -9,10 +9,10 @@ namespace MusicShop.Data
     internal abstract class Event
     {
         public IUser User { get; }
-        public State ShopState { get; }
+        public IState ShopState { get; }
         public DateTime EventTime { get; }
 
-        protected Event(IUser user, State state)
+        protected Event(IUser user, IState state)
         {
             User = user;
             ShopState = state;
