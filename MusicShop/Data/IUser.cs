@@ -8,7 +8,7 @@ namespace MusicShop.Data
 {
     internal interface IUser
     {
-        string GUID { get; set; }
+        string GUID { get; }
         string Name { get; set; }
         int Age { get; set; }
     }

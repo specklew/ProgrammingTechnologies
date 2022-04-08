@@ -8,26 +8,22 @@ namespace MusicShop.Data
 {
     internal class Product
     {
-        private string name;
-        private string description;
-        private float price;
+        public string Name { get; }
+        public string Description { get; set; }
+        public float Price { get; set; }
 
         public Product(string name, float price)
         {
-            this.name = name;
-            this.description = "This product does not have a description";
-            this.price = price;
+            this.Name = name;
+            this.Description = "This product does not have a description";
+            this.Price = price;
         }
 
         public Product(string name, string description, float price)
         {
-            this.name = name;
-            this.description = description;
-            this.price = price;
+            this.Name = name;
+            this.Description = description;
+            this.Price = price;
         }
-
-        public string getName() { return name; }
-        public string getDescription() { return description; }
-        public float getPrice() { return price; }
     }
 }

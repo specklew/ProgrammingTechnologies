@@ -8,7 +8,6 @@ namespace MusicShop.Data
 {
     public abstract class DataLayerAPI
     {
-        internal DataContext? context;
         public abstract void Connect();
 
         public static DataLayerAPI CreateDataRepository()

@@ -2,7 +2,7 @@
 {
     internal class Customer : IUser
     {
-        public string GUID { get; set; }
+        public string GUID { get; }
         public string Name { get; set; }
         public int Age { get; set; }
 
