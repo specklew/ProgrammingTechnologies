@@ -10,13 +10,20 @@ namespace MusicShop.Data
     {
         public string GUID { get; }
         public OrderStatus Status { get; set; }
-        private List<ProductLine> products;
+        private Dictionary<Product, int> products;
 
-        public Order(IEnumerable<ProductLine> productLines)
+        public Order(Product product, int quantity)
         {
             GUID = Guid.NewGuid().ToString();
             Status = OrderStatus.Pending;
-            products = new List<ProductLine>(productLines);
+            products = new Dictionary<Product, int>() {{ product, quantity }};
+        }
+
+        public Order(Dictionary<Product, int> productLines)
+        {
+            GUID = Guid.NewGuid().ToString();
+            Status = OrderStatus.Pending;
+            products = productLines;
         }
     }
 }

@@ -24,11 +24,53 @@ namespace MusicShop.Data
         //Data manipulation:
         //Create, Read, Update, Delete
 
+        //State:
+
+        public void CreateState(int stateId, ProductCatalog catalog)
+        {
+            context.States.Add(new State(stateId, catalog));
+        }
+
+        public IState GetState(int stateId)
+        {
+            return context.States.First(s => s.Id == stateId);
+        }
+   
+        public void UpdateStateProductQuantity(int stateId, Product product, int quantity) 
+        {
+            GetState(stateId).SetProductQuantity(product, quantity);
+        }
+
+        public void UpdateStateProductsQuantity(int stateId, Dictionary<Product, int> productsQuantities)
+        {
+            GetState(stateId).SetProductsQuantity(productsQuantities);
+        }
+
+        public void DeleteState(int stateId)
+        {
+            context.States.Remove(GetState(stateId));
+        }
+
         //Event:
+        //TODO: Make order management sensible.
 
         public void CreateOrderEvent(IUser user, IOrder order, OrderStatus status, IState state) 
         {
             context.Events.Add(new OrderEvent(user, order, status, state));
+        }
+
+        public Event GetEvent(string guid)
+        {
+            foreach(Event @event in context.Events)
+            {
+                if(@event.GUID == guid) return @event;
+            }
+            throw new Exception("Event with guid = '" + guid + "' does not exist!");
+        }
+
+        public void DeleteEvent(string guid)
+        {
+            context.Events.Remove(GetEvent(guid));   
         }
 
         //Catalog:
