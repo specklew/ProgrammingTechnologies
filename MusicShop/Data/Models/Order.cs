@@ -25,5 +25,10 @@ namespace MusicShop.Data
             Status = OrderStatus.Pending;
             products = productLines;
         }
+
+        public Dictionary<Product, int> GetProductsOrdered()
+        {
+            return products;
+        }
     }
 }

@@ -11,7 +11,8 @@ namespace MusicShop.Logic.Tests
         public void TestLogicLayerCreation()
         {
             DataLayerAPI dataLayerAPI = DataLayerAPI.CreateDataRepository();
-            Assert.ThrowsException<NotImplementedException>(() => LogicLayerAPI.CreateLayer(dataLayerAPI));
+            LogicLayerAPI logicLayer = LogicLayerAPI.CreateLayer(dataLayerAPI);
+            Assert.IsNotNull(logicLayer);
         }
     }
 }

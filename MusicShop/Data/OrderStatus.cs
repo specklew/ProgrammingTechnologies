@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MusicShop.Data
 {
-    internal enum OrderStatus
+    public enum OrderStatus
     {
         Pending,
         Cancelled,

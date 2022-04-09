@@ -2,7 +2,7 @@
 
 namespace MusicShop.Data
 {
-    internal class ProductCatalog : Collection<Product>
+    public class ProductCatalog : Collection<Product>
     {
         public new void Add(Product product)
         {

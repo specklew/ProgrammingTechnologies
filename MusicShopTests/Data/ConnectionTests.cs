@@ -7,10 +7,10 @@ namespace MusicShop.Data.Tests
     public class ConnectionTests
     {
         [TestMethod]
-        public void TestDataLayerConnectionThrowNotImplementedException()
+        public void TestDataLayerThrowExceptionWhenGettingNotExistantState()
         {
             DataLayerAPI api = DataLayerAPI.CreateDataRepository();
-            Assert.ThrowsException<NotImplementedException>(() => api.Connect());
+            Assert.ThrowsException<InvalidOperationException>(() => api.GetState(1));
         }
     }
 }

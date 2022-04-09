@@ -16,50 +16,63 @@ namespace MusicShop.Data
 
         public override void Connect()
         {
-            //TODO: Implement the connection mechanism.
-            throw new NotImplementedException();
+            //This function when implemented could handle the loading of the product catalog,
+            //but I'm just to lazy to implement it... :/
         }
 
         
         //Data manipulation:
-        //Create, Read, Update, Delete
+        //Create, Read, Update, Delete.
 
         //State:
 
-        public void CreateState(int stateId, ProductCatalog catalog)
+        public override void CreateState(int stateId, ProductCatalog catalog)
         {
             context.States.Add(new State(stateId, catalog));
         }
 
-        public IState GetState(int stateId)
+        public override IState GetState(int stateId)
         {
             return context.States.First(s => s.Id == stateId);
         }
    
-        public void UpdateStateProductQuantity(int stateId, Product product, int quantity) 
+        public override void UpdateStateProductQuantity(int stateId, Product product, int quantity) 
         {
             GetState(stateId).SetProductQuantity(product, quantity);
         }
 
-        public void UpdateStateProductsQuantity(int stateId, Dictionary<Product, int> productsQuantities)
+        public override void UpdateStateProductsQuantity(int stateId, Dictionary<Product, int> productsQuantities)
         {
             GetState(stateId).SetProductsQuantity(productsQuantities);
         }
 
-        public void DeleteState(int stateId)
+        public override void DeleteState(int stateId)
         {
             context.States.Remove(GetState(stateId));
         }
 
         //Event:
-        //TODO: Make order management sensible.
 
-        public void CreateOrderEvent(IUser user, IOrder order, OrderStatus status, IState state) 
+        public override string CreateOrderEvent(IUser user, IOrder order, OrderStatus status, IState state) 
         {
-            context.Events.Add(new OrderEvent(user, order, status, state));
+            OrderEvent orderEvent = new OrderEvent(user, order, status, state);
+            context.Events.Add(orderEvent);
+            return orderEvent.GUID;
         }
 
-        public Event GetEvent(string guid)
+        public override Event GetEvent(IUser user, IState state)
+        {
+            foreach(Event @event in context.Events)
+            {
+                if(@event.User == user && @event.ShopState == state)
+                {
+                    return @event;
+                }
+            }
+            throw new Exception("No event with these parameters was found!");
+        }
+
+        public override Event GetEvent(string guid)
         {
             foreach(Event @event in context.Events)
             {
@@ -68,19 +81,19 @@ namespace MusicShop.Data
             throw new Exception("Event with guid = '" + guid + "' does not exist!");
         }
 
-        public void DeleteEvent(string guid)
+        public override void DeleteEvent(string guid)
         {
             context.Events.Remove(GetEvent(guid));   
         }
 
         //Catalog:
 
-        public void CreateProduct(string name, string description, float price)
+        public override void CreateProduct(string name, string description, float price)
         {
             context.Catalog.Add(new Product(name, description, price));
         }
 
-        public Product GetProduct(string name)
+        public override Product GetProduct(string name)
         {
             foreach(Product product in context.Catalog)
             {
@@ -92,7 +105,7 @@ namespace MusicShop.Data
             throw new Exception("The product with the name = '" + name + "' does not exist!");
         }
 
-        public void UpdateProduct(string name, string description, float price)
+        public override void UpdateProduct(string name, string description, float price)
         {
             Product product = GetProduct(name);
 
@@ -100,19 +113,19 @@ namespace MusicShop.Data
             product.Price = price;
         }
 
-        public void DeleteProduct(string name)
+        public override void DeleteProduct(string name)
         {
             context.Catalog.Remove(GetProduct(name));
         }
 
         //IUser:
 
-        public void CreateCustomer(string name, int age)
+        public override void CreateCustomer(string name, int age)
         {
             context.Users.Add(new Customer(name, age));
         }
 
-        public IUser GetUser(string guid)
+        public override IUser GetUser(string guid)
         {
             foreach(IUser user in context.Users)
             {
@@ -122,7 +135,7 @@ namespace MusicShop.Data
             throw new Exception("User with the GUID = '" + guid + "' not found");
         }
 
-        public void UpdateUser(string guid, string name, int age)
+        public override void UpdateUser(string guid, string name, int age)
         {
             IUser user = GetUser(guid);
 
@@ -130,11 +143,9 @@ namespace MusicShop.Data
             user.Age = age;
         }
 
-        public void DeleteUser(string guid)
+        public override void DeleteUser(string guid)
         {
             context.Users.Remove(GetUser(guid));
         }
-
-        
     }
 }

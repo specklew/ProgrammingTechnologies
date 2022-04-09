@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MusicShop.Data
 {
-    internal abstract class Event
+    public abstract class Event
     {
         public string GUID { get; }
         public IUser User { get; }

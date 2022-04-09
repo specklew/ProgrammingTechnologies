@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MusicShop.Data
 {
-    internal interface IUser
+    public interface IUser
     {
         string GUID { get; }
         string Name { get; set; }

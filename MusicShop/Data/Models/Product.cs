@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MusicShop.Data
 {
-    internal class Product
+    public class Product
     {
         public string Name { get; }
         public string Description { get; set; }

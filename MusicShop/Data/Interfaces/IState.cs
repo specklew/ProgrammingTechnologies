@@ -1,7 +1,7 @@
 ﻿
 namespace MusicShop.Data
 {
-    internal interface IState
+    public interface IState
     {
         ProductCatalog Catalog { get; }
         int Id { get; set; }
