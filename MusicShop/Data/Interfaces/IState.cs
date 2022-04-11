@@ -1,5 +1,4 @@
-﻿
-namespace MusicShop.Data
+﻿namespace MusicShop.Data
 {
     public interface IState
     {

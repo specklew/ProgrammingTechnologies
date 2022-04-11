@@ -11,17 +11,18 @@ namespace MusicShop.Logic
     {
         public static LogicLayerAPI CreateLayer(DataLayerAPI? data = default)
         {
-            return new LogicLayer(data == null ? DataLayerAPI.CreateDataRepository() : data);
+            return new DataService(data == null ? DataLayerAPI.CreateDataRepository() : data);
         }
 
-        private class LogicLayer : LogicLayerAPI
-        {
-            public LogicLayer(DataLayerAPI data)
-            {
-                dataLayer = data;
-                dataLayer.Connect();
-            }
-            private readonly DataLayerAPI dataLayer;
-        }
+        /*
+        So what needs to be done here??
+
+        1. Create users, orders, products, events and states.
+        2. Update users, orders and products data.
+        3. Remove users, orders, products.
+        4. Read all users, orders, products and events.
+
+        ^All of these methods must be abstract here and inherited in DataService.cs
+         */
     }
 }
