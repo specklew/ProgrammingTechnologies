@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MusicShop.Data;
-using System;
 
 namespace MusicShop.Logic.Tests
 {

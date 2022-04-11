@@ -9,14 +9,15 @@ namespace MusicShop.Logic.Tests
     {
         private DataLayerAPI dataRepository;
         private LogicLayerAPI logic;
-        private IUser customer;
+        private String customer;
 
         [TestInitialize]
         public void TestInitialize()
         {
             dataRepository = DataLayerAPI.CreateDataRepository();
-            dataRepository.Connect();
+            logic = LogicLayerAPI.CreateLayer(dataRepository);
             logic.CreateCustomer("John Smith", 32);
+            customer = logic.GetCustomerGUID("John Smith", 32);
         }
 
         [TestMethod]
@@ -28,16 +29,15 @@ namespace MusicShop.Logic.Tests
         [TestMethod]
         public void TestUpdateCustomerReturnNewData()
         {
-            logic.UpdateCustomer(customer.GUID, "John Brown", 33);
-            Assert.AreEqual("John Brown", customer.Name);
-            Assert.AreEqual(33, customer.Age);
+            logic.UpdateCustomer(customer, "John Brown", 33);
+            Assert.AreEqual(customer + " Name: John Brown, Age: 33", logic.GetCustomer(customer));
         }
 
         [TestMethod]
         public void TestDeleteUserAndExceptionThrows()
         {
-            logic.DeleteCustomer(customer.GUID);
-            Assert.ThrowsException<Exception>(() => logic.GetCustomer(customer.GUID));
+            logic.DeleteCustomer(customer);
+            Assert.ThrowsException<Exception>(() => logic.GetCustomer(logic.GetCustomer(customer)));
         }
     }
 }

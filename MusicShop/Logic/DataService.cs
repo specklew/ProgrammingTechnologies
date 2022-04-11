@@ -1,9 +1,4 @@
 ﻿using MusicShop.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MusicShop.Logic
 {
@@ -49,6 +44,17 @@ namespace MusicShop.Logic
         {
             IUser customer = dataLayer.GetUser(guid);
             return customer.GUID + " Name: " + customer.Name + ", Age: " + customer.Age;
+        }
+
+        public override string GetCustomer(string name, int age)
+        {
+            IUser customer = dataLayer.GetUser(name, age);
+            return customer.GUID + " Name: " + customer.Name + ", Age: " + customer.Age;
+        }
+
+        public override string GetCustomerGUID(string name, int age)
+        {
+            return dataLayer.GetUser(name, age).GUID;
         }
 
         public override String GetProduct(string name)

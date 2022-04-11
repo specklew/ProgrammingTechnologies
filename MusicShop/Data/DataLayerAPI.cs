@@ -6,7 +6,6 @@
 
         public static DataLayerAPI CreateDataRepository()
         {
-            //TODO: implement the data generation for data context.
             DataContext data = new DataContext();
             return new DataRepository(data);
         }

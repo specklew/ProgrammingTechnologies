@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MusicShop.Data;
+﻿using MusicShop.Data;
 
 namespace MusicShop.Logic
 {
@@ -29,6 +24,8 @@ namespace MusicShop.Logic
         //Read
 
         public abstract String GetCustomer(string guid);
+        public abstract String GetCustomer(string name, int age);
+        public abstract String GetCustomerGUID(string name, int age);
 
         public abstract String GetProduct(string name);
 

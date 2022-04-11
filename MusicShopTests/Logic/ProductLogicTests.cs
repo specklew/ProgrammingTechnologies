@@ -9,36 +9,36 @@ namespace MusicShop.Logic.Tests
     {
         private DataLayerAPI dataRepository;
         private LogicLayerAPI logic;
-        private Product product;
+        private String product;
 
         [TestInitialize]
         public void TestInitialize()
         {
             dataRepository = DataLayerAPI.CreateDataRepository();
-            dataRepository.Connect();
+            logic = LogicLayerAPI.CreateLayer(dataRepository);
             logic.CreateProduct("Harp", "47 strings", 1500.0f);
+            product = logic.GetProduct("Harp");
         }
 
         [TestMethod]
         public void TestGetProductReturnNotNull()
         {
             Assert.IsNotNull(product);
-            Assert.AreEqual("Harp", product.Name);
+            Assert.AreEqual("Name: Harp, Description: 47 strings, Price: 1500", product);
         }
 
         [TestMethod]
         public void TestUpdateProductReturnNewData()
         {
-            logic.UpdateProduct(product.Name, "50 strings", 1600.0f);
-            Assert.AreEqual("50 strings", product.Description);
-            Assert.AreEqual(1600.0f, product.Price);
+            logic.UpdateProduct("Harp", "50 strings", 1600.0f);
+            Assert.AreEqual("Name: Harp, Description: 50 strings, Price: 1600", logic.GetProduct("Harp"));
         }
 
         [TestMethod]
         public void TestDeleteProductAndExceptionThrows()
         {
-            logic.DeleteProduct(product.Name);
-            Assert.ThrowsException<Exception>(() => logic.GetProduct(product.Name));
+            logic.DeleteProduct("Harp");
+            Assert.ThrowsException<Exception>(() => logic.GetProduct("Harp"));
         }
     }
 }
