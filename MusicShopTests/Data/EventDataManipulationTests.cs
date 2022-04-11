@@ -26,22 +26,15 @@ namespace MusicShop.Tests
         public void TestGetProductReturnNotNull()
         {
             Assert.IsNotNull(@event);
+            Assert.AreEqual(@event, dataRepository.GetEvent(@event.GUID));
         }
 
-
-        [TestMethod]
-        public void TestUpdateProductReturnNewData()
-        {
-            //dataRepository.UpdateProduct(@event.Name, "Test string", 150.0f);
-            //Assert.AreEqual("Test string", @event.Description);
-            //Assert.AreEqual(150.0f, @event.Price);
-        }
 
         [TestMethod]
         public void TestDeleteProductAndExceptionThrows()
         {
-            //dataRepository.DeleteProduct(@event.Name);
-            //Assert.ThrowsException<Exception>(() => dataRepository.GetProduct(@event.Name));
+            dataRepository.DeleteEvent(@event.GUID);
+            Assert.ThrowsException<Exception>(() => dataRepository.GetEvent(@event.GUID));
         }
     }
 }
