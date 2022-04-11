@@ -5,7 +5,7 @@ using MusicShop.Data;
 namespace MusicShop.Tests
 {
     [TestClass]
-    public class ProductDataManiupulationTests
+    public class ProductDataManipulationTests
     {
         private DataLayerAPI dataRepository;
         private Product product;
