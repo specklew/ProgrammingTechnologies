@@ -38,6 +38,7 @@
 
         public abstract void CreateCustomer(string name, int age);
         public abstract IUser GetUser(string guid);
+        public abstract IUser GetUser(string name, int age);
 
         public abstract void UpdateUser(string guid, string name, int age);
 

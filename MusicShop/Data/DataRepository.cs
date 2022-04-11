@@ -129,6 +129,11 @@
             throw new Exception("User with the GUID = '" + guid + "' not found");
         }
 
+        public override IUser GetUser(string name, int age)
+        {
+            return context.Users.First(user => user.Name == name && user.Age == age);
+        }
+
         public override void UpdateUser(string guid, string name, int age)
         {
             IUser user = GetUser(guid);
