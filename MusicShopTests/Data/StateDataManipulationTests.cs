@@ -1,8 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MusicShop.Data;
 
-namespace MusicShop.Tests
+namespace MusicShop.Data.Tests
 {
     [TestClass]
     public class StateDataManipulationTests
