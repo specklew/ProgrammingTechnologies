@@ -20,9 +20,11 @@
 
         //State:
 
-        public override void CreateState(int stateId, ProductCatalog catalog)
+        public override IState CreateState(int stateId, ProductCatalog catalog)
         {
-            context.States.Add(new State(stateId, catalog));
+            IState state = new State(stateId, catalog);
+            context.States.Add(state);
+            return state;
         }
 
         public override IState GetState(int stateId)
@@ -45,13 +47,25 @@
             context.States.Remove(GetState(stateId));
         }
 
+        //Order:
+
+        public override IOrder CreateOrder(Product product, int quantity)
+        {
+            return new Order(product, quantity);
+        }
+
+        public override IOrder CreateOrder(Dictionary<Product, int> productLines)
+        {
+            return new Order(productLines);
+        }
+
         //Event:
 
-        public override string CreateOrderEvent(IUser user, IOrder order, OrderStatus status, IState state) 
+        public override Event CreateOrderEvent(IUser user, IOrder order, OrderStatus status, IState state) 
         {
             OrderEvent orderEvent = new OrderEvent(user, order, status, state);
             context.Events.Add(orderEvent);
-            return orderEvent.GUID;
+            return orderEvent;
         }
 
         public override Event GetEvent(IUser user, IState state)
@@ -81,6 +95,11 @@
         }
 
         //Catalog:
+
+        public override ProductCatalog GetProductCatalog()
+        {
+            return context.Catalog;
+        }
 
         public override void CreateProduct(string name, string description, float price)
         {
@@ -114,9 +133,11 @@
 
         //IUser:
 
-        public override void CreateCustomer(string name, int age)
+        public override IUser CreateCustomer(string name, int age)
         {
-            context.Users.Add(new Customer(name, age));
+            Customer customer = new Customer(name, age);
+            context.Users.Add(customer);
+            return customer;
         }
 
         public override IUser GetUser(string guid)

@@ -20,7 +20,7 @@ namespace MusicShop.Tests
         }
 
         [TestMethod]
-        public void TestGetUserReturnNotNull()
+        public void TestGetProductReturnNotNull()
         {
             Assert.IsNotNull(product);
             Assert.AreEqual("Bass Guitar", product.Name);
@@ -28,7 +28,7 @@ namespace MusicShop.Tests
 
 
         [TestMethod]
-        public void TestUpdateUserReturnNewData()
+        public void TestUpdateProductReturnNewData()
         {
             dataRepository.UpdateProduct(product.Name, "Test string", 150.0f);
             Assert.AreEqual("Test string", product.Description);
@@ -36,7 +36,7 @@ namespace MusicShop.Tests
         }
 
         [TestMethod]
-        public void TestDeleteUserAndExceptionThrows()
+        public void TestDeleteProductAndExceptionThrows()
         {
             dataRepository.DeleteProduct(product.Name);
             Assert.ThrowsException<Exception>(() => dataRepository.GetProduct(product.Name));
