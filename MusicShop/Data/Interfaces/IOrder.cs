@@ -1,8 +1,7 @@
-﻿namespace MusicShop.Data
+﻿namespace MusicShop.Data;
+
+public interface IOrder
 {
-    public interface IOrder
-    {
-        string GUID { get; }
-        OrderStatus Status { get; set; }
-    }
+    string Guid { get; }
+    OrderStatus Status { get; set; }
 }

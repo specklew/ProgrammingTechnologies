@@ -1,10 +1,9 @@
-﻿namespace MusicShop.Data
+﻿namespace MusicShop.Data;
+
+internal class DataContext
 {
-    internal class DataContext
-    {
-        public ProductCatalog Catalog = new();
-        public List<IUser> Users = new();
-        public List<IState> States = new();
-        public List<Event> Events = new();
-    }
+    public readonly ProductCatalog Catalog = new();
+    public readonly List<IUser> Users = new();
+    public readonly List<IState> States = new();
+    public readonly List<Event> Events = new();
 }

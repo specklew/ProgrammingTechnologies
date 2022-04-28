@@ -1,9 +1,8 @@
-﻿namespace MusicShop.Data
+﻿namespace MusicShop.Data;
+
+public enum OrderStatus
 {
-    public enum OrderStatus
-    {
-        Pending,
-        Cancelled,
-        Completed
-    }
+    Pending,
+    Cancelled,
+    Completed
 }

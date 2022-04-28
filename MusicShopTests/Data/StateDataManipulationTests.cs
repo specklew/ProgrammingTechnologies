@@ -1,50 +1,49 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace MusicShop.Data.Tests
+namespace MusicShop.Data.Tests;
+
+[TestClass]
+public class StateDataManipulationTests
 {
-    [TestClass]
-    public class StateDataManipulationTests
+    private DataLayerApi dataRepository;
+    private IState state;
+    private Product product;
+
+    [TestInitialize]
+    public void TestInitialize()
     {
-        private DataLayerAPI dataRepository;
-        private IState state;
-        private Product product;
+        dataRepository = DataLayerApi.CreateDataRepository();
+        dataRepository.Connect();
 
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            dataRepository = DataLayerAPI.CreateDataRepository();
-            dataRepository.Connect();
+        product = new Product("TestProduct", 100.0f);
 
-            product = new Product("TestProduct", 100.0f);
+        state = dataRepository.CreateState(1, dataRepository.GetProductCatalog());
+    }
 
-            state = dataRepository.CreateState(1, dataRepository.GetProductCatalog());
-        }
+    [TestMethod]
+    public void TestGetStateReturnNotNull()
+    {
+        Assert.IsNotNull(state);
+    }
 
-        [TestMethod]
-        public void TestGetStateReturnNotNull()
-        {
-            Assert.IsNotNull(state);
-        }
+    [TestMethod]
+    public void TestGetState()
+    {
+        Assert.AreEqual(1, state.Id);
+    }
 
-        [TestMethod]
-        public void TestGetState()
-        {
-            Assert.AreEqual(1, state.Id);
-        }
+    [TestMethod]
+    public void TestUpdateStateReturnNewData()
+    {
+        dataRepository.UpdateStateProductQuantity(1, product, 2);
+        Assert.AreEqual(state.GetProductQuantity(product), 2);
+    }
 
-        [TestMethod]
-        public void TestUpdateStateReturnNewData()
-        {
-            dataRepository.UpdateStateProductQuantity(1, product, 2);
-            Assert.AreEqual(state.GetProductQuantity(product), 2);
-        }
-
-        [TestMethod]
-        public void TestDeleteUserAndExceptionThrows()
-        {
-            dataRepository.DeleteState(1);
-            Assert.ThrowsException<InvalidOperationException>(() => dataRepository.GetState(1));
-        }
+    [TestMethod]
+    public void TestDeleteUserAndExceptionThrows()
+    {
+        dataRepository.DeleteState(1);
+        Assert.ThrowsException<InvalidOperationException>(() => dataRepository.GetState(1));
     }
 }

@@ -1,9 +1,8 @@
-﻿namespace MusicShop.Data
+﻿namespace MusicShop.Data;
+
+public interface IUser
 {
-    public interface IUser
-    {
-        string GUID { get; }
-        string Name { get; set; }
-        int Age { get; set; }
-    }
+    string Guid { get; }
+    string Name { get; set; }
+    int Age { get; set; }
 }

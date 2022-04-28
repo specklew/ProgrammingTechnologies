@@ -1,17 +1,16 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MusicShop.Data;
 
-namespace MusicShop.Logic.Tests
+namespace MusicShop.Logic.Tests;
+
+[TestClass]
+public class LayerConnectionTests
 {
-    [TestClass]
-    public class LayerConnectionTests
+    [TestMethod]
+    public void TestLogicLayerCreation()
     {
-        [TestMethod]
-        public void TestLogicLayerCreation()
-        {
-            DataLayerAPI dataLayerAPI = DataLayerAPI.CreateDataRepository();
-            LogicLayerAPI logicLayer = LogicLayerAPI.CreateLayer(dataLayerAPI);
-            Assert.IsNotNull(logicLayer);
-        }
+        DataLayerApi dataLayerApi = DataLayerApi.CreateDataRepository();
+        LogicLayerApi logicLayer = LogicLayerApi.CreateLayer(dataLayerApi);
+        Assert.IsNotNull(logicLayer);
     }
 }
