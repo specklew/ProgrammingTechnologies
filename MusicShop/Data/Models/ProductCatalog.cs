@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace MusicShop.Data;
 
@@ -6,10 +7,11 @@ public class ProductCatalog : Collection<Product>
 {
     public new void Add(Product product)
     {
-        foreach(Product item in Items)
+        if (Items.Any(item => item == product))
         {
-            if (item == product) return;
+            return;
         }
+
         Items.Add(product);
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace MusicShop.Data;
+﻿using System;
+
+namespace MusicShop.Data;
 
 public abstract class Event
 {

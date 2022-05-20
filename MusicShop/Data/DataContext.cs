@@ -1,4 +1,6 @@
-﻿namespace MusicShop.Data;
+﻿using System.Collections.Generic;
+
+namespace MusicShop.Data;
 
 internal class DataContext
 {
