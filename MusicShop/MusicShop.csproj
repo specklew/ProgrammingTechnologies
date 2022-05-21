@@ -44,45 +44,48 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\DataContext.cs" />
     <Compile Include="Data\DataLayerAPI.cs" />
     <Compile Include="Data\DataRepository.cs" />
-    <Compile Include="Data\Interfaces\IOrder.cs" />
-    <Compile Include="Data\Interfaces\IState.cs" />
+    <Compile Include="Data\Interfaces\IEvent.cs" />
+    <Compile Include="Data\Interfaces\IProduct.cs" />
     <Compile Include="Data\Interfaces\IUser.cs" />
-    <Compile Include="Data\LINQtoSQL.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LINQtoSQL.dbml</DependentUpon>
-    </Compile>
     <Compile Include="Data\Models\Customer.cs" />
-    <Compile Include="Data\Models\Event.cs" />
-    <Compile Include="Data\Models\Order.cs" />
     <Compile Include="Data\Models\OrderEvent.cs" />
     <Compile Include="Data\Models\Product.cs" />
-    <Compile Include="Data\Models\ProductCatalog.cs" />
-    <Compile Include="Data\Models\State.cs" />
-    <Compile Include="Data\OrderStatus.cs" />
-    <Compile Include="Logic\DataService.cs" />
-    <Compile Include="Logic\LogicLayerAPI.cs" />
+    <Compile Include="Data\Shop.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Shop.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Service\API\IEventData.cs" />
+    <Compile Include="Service\API\IEventService.cs" />
+    <Compile Include="Service\API\IProductData.cs" />
+    <Compile Include="Service\API\IProductService.cs" />
+    <Compile Include="Service\API\IUserData.cs" />
+    <Compile Include="Service\API\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Data\LINQtoSQL.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>LINQtoSQL.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Data\LINQtoSQL.dbml.layout">
-      <DependentUpon>LINQtoSQL.dbml</DependentUpon>
-    </None>
+    <Compile Include="Service\Data\EventData.cs" />
+    <Compile Include="Service\Data\EventService.cs" />
+    <Compile Include="Service\Data\ProductData.cs" />
+    <Compile Include="Service\Data\ProductService.cs" />
+    <Compile Include="Service\Data\UserData.cs" />
+    <Compile Include="Service\Data\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Logic\" />
     <Folder Include="Presentation\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\Shop.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Shop.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Data\Shop.dbml.layout">
+      <DependentUpon>Shop.dbml</DependentUpon>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

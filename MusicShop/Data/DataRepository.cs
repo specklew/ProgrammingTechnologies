@@ -1,174 +1,192 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using MusicShop.Data.Interfaces;
+using MusicShop.Data.Models;
 
 namespace MusicShop.Data;
 
-internal class DataRepository : DataLayerApi
+public class DataRepository : IDataLayerApi
 {
-    private readonly DataContext _context;
-    public DataRepository(DataContext data)
+    private readonly ShopDataContext _context;
+    public DataRepository(ShopDataContext data)
     {
         _context = data;
     }
-
-    public override void Connect()
+    
+    public IUser Transform(Users user)
     {
-        //This function when implemented could handle the loading of the product catalog,
-        //but I'm just to lazy to implement it... :/
+        return new Customer(user.user_id, user.user_name, user.user_age);
     }
 
-        
-    //Data manipulation:
-    //Create, Read, Update, Delete.
-
-    //State:
-
-    public override IState CreateState(int stateId, ProductCatalog catalog)
+    public IEvent Transform(Events events)
     {
-        IState state = new State(stateId, catalog);
-        _context.States.Add(state);
-        return state;
+        return new OrderEvent(events.event_id, events.event_user, events.event_product, events.event_id);
     }
 
-    public override IState GetState(int stateId)
+    public IProduct Transform(Products product)
     {
-        return _context.States.First(s => s.Id == stateId);
-    }
-   
-    public override void UpdateStateProductQuantity(int stateId, Product product, int quantity) 
-    {
-        GetState(stateId).SetProductQuantity(product, quantity);
+        return new Product(product.product_id, product.product_name, product.product_description,
+            product.product_price);
     }
 
-    public override void UpdateStateProductsQuantity(int stateId, Dictionary<Product, int> productsQuantities)
+
+    #region User
+
+    public IUser GetUser(int userId)
     {
-        GetState(stateId).SetProductsQuantity(productsQuantities);
+        var userDatabase = (from user in _context.Users where user.user_id == userId select user).FirstOrDefault();
+        return userDatabase != null ? Transform(userDatabase) : null;
     }
 
-    public override void DeleteState(int stateId)
+    public bool AddUser(int userId, string userName, int userAge)
     {
-        _context.States.Remove(GetState(stateId));
-    }
-
-    //Order:
-
-    public override IOrder CreateOrder(Product product, int quantity)
-    {
-        return new Order(product, quantity);
-    }
-
-    public override IOrder CreateOrder(Dictionary<Product, int> productLines)
-    {
-        return new Order(productLines);
-    }
-
-    //Event:
-
-    public override Event CreateOrderEvent(IUser user, IOrder order, OrderStatus status, IState state) 
-    {
-        OrderEvent orderEvent = new OrderEvent(user, order, status, state);
-        _context.Events.Add(orderEvent);
-        return orderEvent;
-    }
-
-    public override Event GetEvent(IUser user, IState state)
-    {
-        foreach(Event @event in _context.Events)
+        if (GetUser(userId) != null) return false;
+        var newReader = new Users
         {
-            if(@event.User == user && @event.ShopState == state)
-            {
-                return @event;
-            }
-        }
-        throw new Exception("No event with these parameters was found!");
+            user_id = userId,
+            user_name = userName,
+            user_age = userAge
+        };
+        _context.Users.InsertOnSubmit(newReader);
+        _context.SubmitChanges();
+        return true;
     }
 
-    public override Event GetEvent(string guid)
+    public bool UpdateUser(int userId, string userName, int userAge)
     {
-        foreach(Event @event in _context.Events)
+        var user = _context.Users.SingleOrDefault(user => user.user_id == userId);
+        if (user == null) return false;
+        user.user_id = userId;
+        user.user_name = userName;
+        user.user_age = userAge;
+        _context.SubmitChanges();
+        return true;
+    }
+
+    public bool DeleteUser(int userId)
+    {
+        var user = _context.Users.SingleOrDefault(user => user.user_id == userId);
+        if (user == null) return false;
+        _context.Users.DeleteOnSubmit(user);
+        _context.SubmitChanges();
+        return true;
+    }
+
+    #endregion
+
+    #region Event
+
+    public IEvent GetEvent(int eventId)
+    {
+        var eventDatabase = (from events in _context.Events where events.event_id == eventId select events).FirstOrDefault();
+        return eventDatabase != null ? Transform(eventDatabase) : null;
+    }
+
+    public bool AddEvent(int eventId)
+    {
+        if (GetEvent(eventId) != null) return false;
+        var newReader = new Events
         {
-            if(@event.Guid == guid) return @event;
-        }
-        throw new Exception("Event with guid = '" + guid + "' does not exist!");
+            event_id = eventId
+        };
+        _context.Events.InsertOnSubmit(newReader);
+        _context.SubmitChanges();
+        return true;
     }
 
-    public override void DeleteEvent(string guid)
+    public bool AddEvent(int eventId, int userId, int productId)
     {
-        _context.Events.Remove(GetEvent(guid));   
-    }
-
-    //Catalog:
-
-    public override ProductCatalog GetProductCatalog()
-    {
-        return _context.Catalog;
-    }
-
-    public override void CreateProduct(string name, string description, float price)
-    {
-        _context.Catalog.Add(new Product(name, description, price));
-    }
-
-    public override Product GetProduct(string name)
-    {
-        foreach(Product product in _context.Catalog)
+        if (GetEvent(eventId) != null) return false;
+        var newReader = new Events
         {
-            if(product.Name == name)
-            {
-                return product;
-            }
-        }
-        throw new Exception("The product with the name = '" + name + "' does not exist!");
+            event_id = eventId,
+            event_user = userId,
+            event_product = productId
+        };
+        _context.Events.InsertOnSubmit(newReader);
+        _context.SubmitChanges();
+        return true;
     }
 
-    public override void UpdateProduct(string name, string description, float price)
+    public bool UpdateEvent(int eventId, int userId, int productId)
     {
-        Product product = GetProduct(name);
-
-        product.Description = description;
-        product.Price = price;
+        var events = _context.Events.SingleOrDefault(events => events.event_id == eventId);
+        if (events == null) return false;
+        events.event_id = userId;
+        events.event_user = userId;
+        events.event_product = productId;
+        _context.SubmitChanges();
+        return true;
     }
 
-    public override void DeleteProduct(string name)
+    public bool DeleteEvent(int eventId)
     {
-        _context.Catalog.Remove(GetProduct(name));
+        var events = _context.Events.SingleOrDefault(events => events.event_id == eventId);
+        if (events == null) return false;
+        _context.Events.DeleteOnSubmit(events);
+        _context.SubmitChanges();
+        return true;
+    }
+    
+    #endregion
+    
+    #region Product
+
+    public IProduct GetProduct(int productId)
+    {
+        var productDatabase = (from product in _context.Products where product.product_id == productId select product).FirstOrDefault();
+        return productDatabase != null ? Transform(productDatabase) : null;
     }
 
-    //IUser:
-
-    public override IUser CreateCustomer(string name, int age)
+    public bool AddProduct(int productId, string name, float price)
     {
-        Customer customer = new Customer(name, age);
-        _context.Users.Add(customer);
-        return customer;
-    }
-
-    public override IUser GetUser(string guid)
-    {
-        foreach(IUser user in _context.Users)
+        if (GetProduct(productId) != null) return false;
+        var newReader = new Products
         {
-            if(user.Guid == guid) return user;
-        }
-
-        throw new Exception("User with the GUID = '" + guid + "' not found");
+            product_id = productId,
+            product_name = name,
+            product_description = "This product doesn't have a description!",
+            product_price = price
+        };
+        _context.Products.InsertOnSubmit(newReader);
+        _context.SubmitChanges();
+        return true;
     }
 
-    public override IUser GetUser(string name, int age)
+    public bool AddProduct(int productId, string name, string description, float price)
     {
-        return _context.Users.First(user => user.Name == name && user.Age == age);
+        if (GetProduct(productId) != null) return false;
+        var newReader = new Products
+        {
+            product_id = productId,
+            product_name = name,
+            product_description = description,
+            product_price = price
+        };
+        _context.Products.InsertOnSubmit(newReader);
+        _context.SubmitChanges();
+        return true;
     }
 
-    public override void UpdateUser(string guid, string name, int age)
+    public bool UpdateProduct(int productId, string name, string description, float price)
     {
-        IUser user = GetUser(guid);
-
-        user.Name = name;
-        user.Age = age;
+        var product = _context.Products.SingleOrDefault(product => product.product_id == productId);
+        if (product == null) return false;
+        product.product_id = productId;
+        product.product_name = name;
+        product.product_description = description;
+        product.product_price = price;
+        _context.SubmitChanges();
+        return true;
     }
 
-    public override void DeleteUser(string guid)
+    public bool DeleteProduct(int productId)
     {
-        _context.Users.Remove(GetUser(guid));
+        var product = _context.Products.SingleOrDefault(product => product.product_id == productId);
+        if (product == null) return false;
+        _context.Products.DeleteOnSubmit(product);
+        _context.SubmitChanges();
+        return true;
     }
+
+    #endregion
 }

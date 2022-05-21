@@ -1,18 +1,19 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using MusicShop.Data.Interfaces;
 
 namespace MusicShop.Data.Tests;
 
 [TestClass]
 public class UserDataManipulationTests
 {
-    private DataLayerApi dataRepository;
+    private IDataLayerApi dataRepository;
     private IUser user;
 
     [TestInitialize]
     public void TestInitialize()
     {
-        dataRepository = DataLayerApi.CreateDataRepository();
+        dataRepository = IDataLayerApi.CreateDataRepository();
         dataRepository.Connect();
         dataRepository.CreateCustomer("Joe Doe", 25);
         user = dataRepository.GetUser("Joe Doe", 25);

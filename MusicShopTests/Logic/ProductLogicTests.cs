@@ -7,14 +7,14 @@ namespace MusicShop.Logic.Tests;
 [TestClass]
 public class ProductLogicTests
 {
-    private DataLayerApi dataRepository;
+    private IDataLayerApi dataRepository;
     private LogicLayerApi logic;
     private String product;
 
     [TestInitialize]
     public void TestInitialize()
     {
-        dataRepository = DataLayerApi.CreateDataRepository();
+        dataRepository = IDataLayerApi.CreateDataRepository();
         logic = LogicLayerApi.CreateLayer(dataRepository);
         logic.CreateProduct("Harp", "47 strings", 1500.0f);
         product = logic.GetProduct("Harp");

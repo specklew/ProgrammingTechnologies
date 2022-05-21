@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Class="ShopDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="" Member="Users">
+    <Type Name="Users">
+      <Column Member="user_id" Type="System.Int32" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Member="user_name" Type="System.String" CanBeNull="false" />
+      <Column Member="user_age" Type="System.Int32" CanBeNull="false" />
+      <Association Name="Users_Events" Member="Events" ThisKey="user_id" OtherKey="event_user" Type="Events" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Events">
+    <Type Name="Events">
+      <Column Member="event_id" Type="System.Int32" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Member="event_user" Type="System.Int32" CanBeNull="false" />
+      <Column Member="event_product" Type="System.Int32" CanBeNull="false" />
+      <Association Name="Users_Events" Member="Users" ThisKey="event_user" OtherKey="user_id" Type="Users" IsForeignKey="true" />
+      <Association Name="Products_Events" Member="Products" ThisKey="event_product" OtherKey="product_id" Type="Products" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Products">
+    <Type Name="Products">
+      <Column Member="product_id" Type="System.Int32" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Member="product_name" Type="System.String" CanBeNull="false" />
+      <Column Member="product_description" Type="System.String" CanBeNull="false" />
+      <Column Member="product_price" Type="System.Single" CanBeNull="false" />
+      <Association Name="Products_Events" Member="Events" ThisKey="product_id" OtherKey="event_product" Type="Events" />
+    </Type>
+  </Table>
+</Database>

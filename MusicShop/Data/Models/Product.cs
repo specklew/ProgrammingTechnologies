@@ -1,20 +1,25 @@
-﻿namespace MusicShop.Data;
+﻿using MusicShop.Data.Interfaces;
 
-public class Product
+namespace MusicShop.Data.Models;
+
+public class Product : IProduct
 {
+    public int Id { get; }
     public string Name { get; }
     public string Description { get; set; }
     public float Price { get; set; }
 
-    public Product(string name, float price)
+    public Product(int productId, string name, float price)
     {
+        Id = productId;
         Name = name;
-        Description = "This product does not have a description";
+        Description = "This product does not have a description!";
         Price = price;
     }
 
-    public Product(string name, string description, float price)
+    public Product(int productId, string name, string description, float price)
     {
+        Id = productId;
         Name = name;
         Description = description;
         Price = price;

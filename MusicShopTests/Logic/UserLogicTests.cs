@@ -7,14 +7,14 @@ namespace MusicShop.Logic.Tests;
 [TestClass]
 public class UserLogicTests
 {
-    private DataLayerApi dataRepository;
+    private IDataLayerApi dataRepository;
     private LogicLayerApi logic;
     private String customer;
 
     [TestInitialize]
     public void TestInitialize()
     {
-        dataRepository = DataLayerApi.CreateDataRepository();
+        dataRepository = IDataLayerApi.CreateDataRepository();
         logic = LogicLayerApi.CreateLayer(dataRepository);
         logic.CreateCustomer("John Smith", 32);
         customer = logic.GetCustomerGuid("John Smith", 32);

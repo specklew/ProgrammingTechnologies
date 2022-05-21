@@ -1,18 +1,19 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using MusicShop.Data.Models;
 
 namespace MusicShop.Data.Tests;
 
 [TestClass]
 public class ProductDataManipulationTests
 {
-    private DataLayerApi dataRepository;
+    private IDataLayerApi dataRepository;
     private Product product;
 
     [TestInitialize]
     public void TestInitialize()
     {
-        dataRepository = DataLayerApi.CreateDataRepository();
+        dataRepository = IDataLayerApi.CreateDataRepository();
         dataRepository.Connect();
         dataRepository.CreateProduct("Bass Guitar", "Lowest-pitched string instrument", 200.0f);
         product = dataRepository.GetProduct("Bass Guitar");

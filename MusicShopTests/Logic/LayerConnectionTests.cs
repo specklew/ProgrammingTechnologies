@@ -9,7 +9,7 @@ public class LayerConnectionTests
     [TestMethod]
     public void TestLogicLayerCreation()
     {
-        DataLayerApi dataLayerApi = DataLayerApi.CreateDataRepository();
+        IDataLayerApi dataLayerApi = IDataLayerApi.CreateDataRepository();
         LogicLayerApi logicLayer = LogicLayerApi.CreateLayer(dataLayerApi);
         Assert.IsNotNull(logicLayer);
     }

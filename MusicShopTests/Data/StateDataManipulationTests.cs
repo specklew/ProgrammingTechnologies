@@ -1,19 +1,20 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MusicShop.Data.Models;
 
 namespace MusicShop.Data.Tests;
 
 [TestClass]
 public class StateDataManipulationTests
 {
-    private DataLayerApi dataRepository;
+    private IDataLayerApi dataRepository;
     private IState state;
     private Product product;
 
     [TestInitialize]
     public void TestInitialize()
     {
-        dataRepository = DataLayerApi.CreateDataRepository();
+        dataRepository = IDataLayerApi.CreateDataRepository();
         dataRepository.Connect();
 
         product = new Product("TestProduct", 100.0f);

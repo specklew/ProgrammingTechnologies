@@ -1,6 +1,6 @@
-﻿namespace MusicShop.Data.Interfaces;
+namespace MusicShop.Service.API;
 
-public interface IUser
+public interface IUserData
 {
     int Id { get; }
     string Name { get; set; }

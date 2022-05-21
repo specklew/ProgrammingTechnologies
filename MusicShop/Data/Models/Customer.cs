@@ -1,14 +1,16 @@
-﻿namespace MusicShop.Data;
+﻿using MusicShop.Data.Interfaces;
+
+namespace MusicShop.Data.Models;
 
 internal class Customer : IUser
 {
-    public string Guid { get; }
+    public int Id { get; }
     public string Name { get; set; }
     public int Age { get; set; }
 
-    public Customer(string name, int age)
+    public Customer(int id, string name, int age)
     {
-        Guid = System.Guid.NewGuid().ToString();
+        Id = id;
         Name = name;
         Age = age;
     }

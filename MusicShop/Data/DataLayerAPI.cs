@@ -1,52 +1,40 @@
-﻿using System.Collections.Generic;
+﻿using MusicShop.Data.Interfaces;
 
 namespace MusicShop.Data;
 
-public abstract class DataLayerApi
+public interface IDataLayerApi
 {
-    public abstract void Connect();
+    IUser Transform(Users user);
+    IEvent Transform(Events events);
+    IProduct Transform(Products product);
 
-    public static DataLayerApi CreateDataRepository()
-    {
-        DataContext data = new DataContext();
-        return new DataRepository(data);
-    }
+    //CRUD:
+    #region User
 
-    public abstract IState CreateState(int stateId, ProductCatalog catalog);
+    IUser GetUser(int userId);
+    bool AddUser(int userId, string userName, int userAge);
+    bool UpdateUser(int userId, string userName, int userAge);
+    bool DeleteUser(int userId);
 
-    public abstract IState GetState(int stateId);
+    #endregion
 
-    public abstract void UpdateStateProductQuantity(int stateId, Product product, int quantity);
+    #region Event
 
-    public abstract void UpdateStateProductsQuantity(int stateId, Dictionary<Product, int> productsQuantities);
+    IEvent GetEvent(int eventId);
+    bool AddEvent(int eventId);
+    bool AddEvent(int eventId, int userId, int productId);
+    bool UpdateEvent(int eventId, int userId, int productId);
+    bool DeleteEvent(int eventId);
 
-    public abstract void DeleteState(int stateId);
+    #endregion
 
-    public abstract IOrder CreateOrder(Product product, int quantity);
-    public abstract IOrder CreateOrder(Dictionary<Product, int> productLines);
+    #region Product
 
-    public abstract Event CreateOrderEvent(IUser user, IOrder order, OrderStatus status, IState state);
-    public abstract Event GetEvent(IUser user, IState state);
+    IProduct GetProduct(int productId);
+    bool AddProduct(int productId, string name, float price);
+    bool AddProduct(int productId, string name, string description, float price);
+    bool UpdateProduct(int productId, string name, string description, float price);
+    bool DeleteProduct(int productId);
 
-    public abstract Event GetEvent(string guid);
-
-    public abstract void DeleteEvent(string guid);
-
-    public abstract ProductCatalog GetProductCatalog();
-
-    public abstract void CreateProduct(string name, string description, float price);
-
-    public abstract Product GetProduct(string name);
-
-    public abstract void UpdateProduct(string name, string description, float price);
-
-    public abstract void DeleteProduct(string name);
-
-    public abstract IUser CreateCustomer(string name, int age);
-    public abstract IUser GetUser(string guid);
-    public abstract IUser GetUser(string name, int age);
-
-    public abstract void UpdateUser(string guid, string name, int age);
-
-    public abstract void DeleteUser(string guid);
+    #endregion
 }
