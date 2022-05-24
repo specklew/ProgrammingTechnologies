@@ -9,6 +9,11 @@ public class UserService : IUserService
 {
     private readonly DataRepository _dataRepository;
 
+    public UserService()
+    {
+        _dataRepository = new DataRepository();
+    }
+    
     public UserService(DataRepository dataRepository)
     {
         _dataRepository = dataRepository;

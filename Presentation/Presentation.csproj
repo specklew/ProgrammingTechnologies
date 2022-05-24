@@ -58,6 +58,7 @@
     </ApplicationDefinition>
     <Compile Include="ViewModel\MVVM\RelayCommand.cs" />
     <Compile Include="ViewModel\MVVM\ViewModelBase.cs" />
+    <Compile Include="ViewModel\UserListViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

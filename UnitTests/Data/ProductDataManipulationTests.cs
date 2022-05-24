@@ -1,45 +1,46 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Data;
-using Data.Models;
+using Data.Interfaces;
 
 namespace MusicShopTests.Data;
 
 [TestClass]
 public class ProductDataManipulationTests
 {
-    private IDataLayerApi dataRepository;
-    private Product product;
+    private IDataLayerApi _dataRepository;
+    private IProduct _product;
 
     [TestInitialize]
     public void TestInitialize()
     {
-        dataRepository = IDataLayerApi.CreateDataRepository();
-        dataRepository.Connect();
-        dataRepository.CreateProduct("Bass Guitar", "Lowest-pitched string instrument", 200.0f);
-        product = dataRepository.GetProduct("Bass Guitar");
+        _dataRepository = new DataRepository();
+
+        _dataRepository.NukeData();
+        
+        _dataRepository.AddProduct(0, "Bass Guitar", "Pluck, pluck, bass goes brrr", 200.0f);
+        _product = _dataRepository.GetProduct(0);
     }
 
     [TestMethod]
     public void TestGetProductReturnNotNull()
     {
-        Assert.IsNotNull(product);
-        Assert.AreEqual("Bass Guitar", product.Name);
+        Assert.IsNotNull(_product);
+        Assert.AreEqual("Bass Guitar", _product.Name);
     }
 
 
     [TestMethod]
     public void TestUpdateProductReturnNewData()
     {
-        dataRepository.UpdateProduct(product.Name, "Test string", 150.0f);
-        Assert.AreEqual("Test string", product.Description);
-        Assert.AreEqual(150.0f, product.Price);
+        _dataRepository.UpdateProduct(0, "Test string","Test description", 150.0f);
+        Assert.AreEqual("Test string", _dataRepository.GetProduct(0).Name);
+        Assert.AreEqual(150.0f, _dataRepository.GetProduct(0).Price);
     }
 
     [TestMethod]
     public void TestDeleteProductAndExceptionThrows()
     {
-        dataRepository.DeleteProduct(product.Name);
-        Assert.ThrowsException<Exception>(() => dataRepository.GetProduct(product.Name));
+        _dataRepository.DeleteProduct(0);
+        Assert.IsFalse(_dataRepository.DeleteProduct(0));
     }
 }

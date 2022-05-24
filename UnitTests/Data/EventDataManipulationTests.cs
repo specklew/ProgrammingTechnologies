@@ -1,41 +1,36 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Data;
-using Data.Interfaces;
-using Data.Models;
 
 namespace MusicShopTests.Data;
 
 [TestClass]
 public class EventDataManiupulationTests
 {
-    private IDataLayerApi dataRepository;
-    private IEvent @event;
+    private IDataLayerApi _dataRepository;
 
     [TestInitialize]
     public void TestInitialize()
     {
-        dataRepository = IDataLayerApi.CreateDataRepository();
-        dataRepository.Connect();
-        // IUser, IOrder, IState:
-        IUser user = dataRepository.CreateCustomer("Joe Doe", 25);
-        IOrder order = dataRepository.CreateOrder(new Product("TestProduct", 100.0f), 10);
-        IState state = dataRepository.CreateState(1, dataRepository.GetProductCatalog());
-        @event = dataRepository.CreateOrderEvent(user, order, OrderStatus.Pending, state);
+        _dataRepository = new DataRepository();
+        
+        _dataRepository.NukeData();
+        
+        _dataRepository.AddUser(0, "Joe Doe", 25);
+        _dataRepository.AddProduct(0, "Bass Guitar", "Pluck, pluck, bass goes brrr", 200.0f);
+        _dataRepository.AddEvent(0, 0, 0);
     }
 
     [TestMethod]
     public void TestGetProductReturnNotNull()
     {
-        Assert.IsNotNull(@event);
-        Assert.AreEqual(@event, dataRepository.GetEvent(@event.Guid));
+        Assert.IsNotNull(_dataRepository.GetProduct(0));
     }
 
 
     [TestMethod]
     public void TestDeleteProductAndExceptionThrows()
     {
-        dataRepository.DeleteEvent(@event.Guid);
-        Assert.ThrowsException<Exception>(() => dataRepository.GetEvent(@event.Guid));
+        _dataRepository.DeleteEvent(0);
+        Assert.IsFalse(_dataRepository.DeleteEvent(0));
     }
 }

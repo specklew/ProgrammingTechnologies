@@ -20,14 +20,14 @@
         <elementListCompartment Id="db20e4d6-6897-4ce6-9db8-e94b328c623e" absoluteBounds="4.64, 3.96, 1.9700000000000002, 1.0013420010606446" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(3 : 1.68608877316117); (4.625 : 1.68608877316117)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(3 : 1.68608877316117); (4.625 : 1.68608877316117)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ShopDataContext/Users/Users_Events" />
       <nodes>
         <classShapeMoniker Id="0fd7c298-9c19-47f3-b668-5200fe84580b" />
         <classShapeMoniker Id="39257a31-d16e-4ea6-8908-3f318666bd8a" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.625 : 3.5); (5.625 : 2.37217754632235)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.625 : 3.5); (5.625 : 2.37217754632235)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ShopDataContext/Products/Products_Events" />
       <nodes>
         <classShapeMoniker Id="b5685056-87a5-43c3-8ef9-6f8410336be9" />

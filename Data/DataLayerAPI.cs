@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Data.Interfaces;
+using MusicShop;
 
 namespace Data;
 
@@ -41,4 +42,6 @@ public interface IDataLayerApi
     bool DeleteProduct(int productId);
 
     #endregion
+
+    public void NukeData();
 }

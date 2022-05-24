@@ -8,44 +8,46 @@ namespace MusicShopTests.Data;
 [TestClass]
 public class UserDataManipulationTests
 {
-    private IDataLayerApi dataRepository;
-    private IUser user;
+    private IDataLayerApi _dataRepository;
+    private IUser _user;
 
     [TestInitialize]
     public void TestInitialize()
     {
-        dataRepository = IDataLayerApi.CreateDataRepository();
-        dataRepository.Connect();
-        dataRepository.CreateCustomer("Joe Doe", 25);
-        user = dataRepository.GetUser("Joe Doe", 25);
+        _dataRepository = new DataRepository();
+        
+        _dataRepository.NukeData();
+        
+        _dataRepository.AddUser(0,"Joe Doe", 25);
+        _user = _dataRepository.GetUser(0);
     }
 
     [TestMethod]
     public void TestGetUserReturnNotNull()
     {
-        Assert.IsNotNull(user);
+        Assert.IsNotNull(_user);
     }
 
     [TestMethod]
     public void TestGetUserByGuidReturnNotNull()
     {
-        IUser copy = dataRepository.GetUser(user.Guid);
+        IUser copy = _dataRepository.GetUser(_user.Id);
         Assert.IsNotNull(copy);
-        Assert.AreEqual(user.Guid, copy.Guid);
+        Assert.AreEqual(_user.Id, copy.Id);
     }
 
     [TestMethod]
     public void TestUpdateUserReturnNewData()
     {
-        dataRepository.UpdateUser(user.Guid, "John Doe", 22);
-        Assert.AreEqual("John Doe", user.Name);
-        Assert.AreEqual(22, user.Age);
+        _dataRepository.UpdateUser(_user.Id, "John Doe", 22);
+        Assert.AreEqual("John Doe", _dataRepository.GetUser(0).Name);
+        Assert.AreEqual(22, _dataRepository.GetUser(0).Age);
     }
 
     [TestMethod]
     public void TestDeleteUserAndExceptionThrows()
     {
-        dataRepository.DeleteUser(user.Guid);
-        Assert.ThrowsException<Exception>(() => dataRepository.GetUser(user.Guid));
+        _dataRepository.DeleteUser(_user.Id);
+        Assert.IsFalse(_dataRepository.DeleteUser(_user.Id));
     }
 }

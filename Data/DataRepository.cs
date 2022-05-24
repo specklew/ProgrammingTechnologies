@@ -2,12 +2,19 @@
 using System.Linq;
 using Data.Interfaces;
 using Data.Models;
+using MusicShop;
 
 namespace Data;
 
 public class DataRepository : IDataLayerApi
 {
     private readonly ShopDataContext _context;
+    
+    public DataRepository()
+    {
+        _context = new ShopDataContext();
+    }
+    
     public DataRepository(ShopDataContext data)
     {
         _context = data;
@@ -208,4 +215,11 @@ public class DataRepository : IDataLayerApi
     }
 
     #endregion
+    
+    public void NukeData()
+    {
+        _context.ExecuteCommand("DELETE FROM Events");
+        _context.ExecuteCommand("DELETE FROM Products");
+        _context.ExecuteCommand("DELETE FROM Users");
+    }
 }
