@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Class="ShopDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=LAPTOP-P3FAE66R\MSSQLSERVER_DB;Initial Catalog=PT;Integrated Security=True" SettingsObjectName="MusicShop.Properties.Settings" SettingsPropertyName="PTConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LAPTOP-P3FAE66R\MSSQLSERVER_DB;Initial Catalog=PT;Integrated Security=True" SettingsObjectName="Data.Properties.Settings" SettingsPropertyName="PTConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="" Member="Users">
     <Type Name="Users">
       <Column Name="user_id" Type="System.Int32" IsPrimaryKey="true" CanBeNull="false" />

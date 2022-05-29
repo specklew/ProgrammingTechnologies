@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MusicShop.Properties {
+namespace Data.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -16,12 +16,13 @@ namespace MusicShop.Properties {
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-
-        public static Settings Default
-        {
-            get { return defaultInstance; }
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
         }
-
+        
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
@@ -30,6 +31,17 @@ namespace MusicShop.Properties {
         public string PTConnectionString {
             get {
                 return ((string)(this["PTConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-P3FAE66R\\MSSQLSERVER_DB;Initial Catalog=PT;Integrated Security" +
+            "=True")]
+        public string PTConnectionString1 {
+            get {
+                return ((string)(this["PTConnectionString1"]));
             }
         }
     }

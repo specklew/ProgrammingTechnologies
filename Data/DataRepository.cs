@@ -2,7 +2,6 @@
 using System.Linq;
 using Data.Interfaces;
 using Data.Models;
-using MusicShop;
 
 namespace Data;
 

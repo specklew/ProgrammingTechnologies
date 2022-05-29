@@ -10,22 +10,22 @@ namespace Presentation.ViewModel
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        private ViewModelBase _SelectedVM;
+        private ViewModelBase _SelectedVm;
         private ICommand _SwitchViewCommand;
 
         public MainWindowViewModel()
         {
-            SelectedVM = new UserListViewModel();
+            SelectedVm = new UserListViewModel();
             _SwitchViewCommand = new RelayCommand(view => { SwitchView(view.ToString()); });
         }
 
-        public ViewModelBase SelectedVM
+        public ViewModelBase SelectedVm
         {
-            get => _SelectedVM;
+            get => _SelectedVm;
             set
             {
-                _SelectedVM = value;
-                OnPropertyChanged(nameof(SelectedVM));
+                _SelectedVm = value;
+                OnPropertyChanged(nameof(SelectedVm));
             }
         }
 
@@ -39,13 +39,13 @@ namespace Presentation.ViewModel
             switch (view)
             {
                 case "UserListView":
-                    SelectedVM = new UserListViewModel();
+                    SelectedVm = new UserListViewModel();
                     break;
                 case "ProductListView":
-                    //SelectedVM = new ProductListViewModel();
+                    //SelectedVm = new ProductListViewModel();
                     break;
                 case "EventListView":
-                    //SelectedVM = new EventListViewModel();
+                    //SelectedVm = new EventListViewModel();
                     break;
             }
         }

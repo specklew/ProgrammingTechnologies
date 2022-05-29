@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Data.Interfaces;
-using MusicShop;
 
 namespace Data;
 

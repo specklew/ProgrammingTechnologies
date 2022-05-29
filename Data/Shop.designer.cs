@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MusicShop
+namespace Data
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
@@ -41,7 +41,7 @@ namespace MusicShop
     #endregion
 		
 		public ShopDataContext() : 
-				base(global::MusicShop.Properties.Settings.Default.PTConnectionString, mappingSource)
+				base(global::Data.Properties.Settings.Default.PTConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
