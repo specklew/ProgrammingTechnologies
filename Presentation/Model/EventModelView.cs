@@ -9,7 +9,6 @@ public class EventModelView : IEventModelView
     public int UserId { get; set; }
     public int ProductId { get; set; }
     public DateTime EventTime { get; }
-    
     public EventModelView(int id, int userId, int productId, DateTime time)
     {
         Id = id;

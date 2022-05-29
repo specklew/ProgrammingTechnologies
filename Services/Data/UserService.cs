@@ -24,7 +24,6 @@ public class UserService : IUserService
         return user == null ? null : new UserData(user.Id);
     }
 
-
     public IEnumerable<IUserData> GetAllUsers()
     {
         List<IUserData> users = new List<IUserData>();

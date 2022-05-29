@@ -19,7 +19,6 @@ public class ProductService : IProductService
         return product == null ? null : new ProductData(product.Id, product.Name, product.Description, product.Price);
     }
 
-
     public IEnumerable<IProductData> GetAllProducts()
     {
         List<IProductData> products = new List<IProductData>();
