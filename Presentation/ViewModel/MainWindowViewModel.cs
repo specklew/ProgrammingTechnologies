@@ -10,7 +10,7 @@ namespace Presentation.ViewModel;
 
 public class MainWindowViewModel : ViewModelBase
 {
-    private ViewModelBase _SelectedVm;
+    private ViewModelBase _selectedVm;
     private ICommand _SwitchViewCommand;
 
     public MainWindowViewModel()
@@ -21,18 +21,15 @@ public class MainWindowViewModel : ViewModelBase
 
     public ViewModelBase SelectedVm
     {
-        get => _SelectedVm;
+        get => _selectedVm;
         set
         {
-            _SelectedVm = value;
+            _selectedVm = value;
             OnPropertyChanged(nameof(SelectedVm));
         }
     }
 
-    public ICommand SwitchViewCommand
-    {
-        get => _SwitchViewCommand;
-    }
+    public ICommand SwitchViewCommand => _SwitchViewCommand;
 
     public void SwitchView(string view)
     {
