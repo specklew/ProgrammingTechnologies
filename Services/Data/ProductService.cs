@@ -9,6 +9,12 @@ public class ProductService : IProductService
 {
     private readonly DataRepository _dataRepository;
 
+    public ProductService()
+    {
+        _dataRepository = new DataRepository();
+    }
+
+    
     public ProductService(DataRepository dataRepository)
     {
         _dataRepository = dataRepository;

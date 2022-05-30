@@ -57,6 +57,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\EventItemViewModel.cs" />
+    <Compile Include="ViewModel\EventListViewModel.cs" />
+    <Compile Include="ViewModel\ProductItemViewModel.cs" />
+    <Compile Include="ViewModel\ProductListViewModel.cs" />
+    <Compile Include="View\EventItemView.xaml.cs">
+      <DependentUpon>EventItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EventListView.xaml.cs">
+      <DependentUpon>EventListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProductItemView.xaml.cs">
+      <DependentUpon>ProductItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProductListView.xaml.cs">
+      <DependentUpon>ProductListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UserItemView.xaml.cs">
       <DependentUpon>UserItemView.xaml</DependentUpon>
     </Compile>
@@ -68,6 +84,22 @@
     <Compile Include="ViewModel\MVVM\ViewModelBase.cs" />
     <Compile Include="ViewModel\UserItemViewModel.cs" />
     <Compile Include="ViewModel\UserListViewModel.cs" />
+    <Page Include="View\EventItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EventListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProductItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProductListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\UserItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

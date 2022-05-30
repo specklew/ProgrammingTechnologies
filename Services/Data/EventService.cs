@@ -9,6 +9,11 @@ public class EventService : IEventService
 {
     private readonly DataRepository _dataRepository;
 
+    public EventService()
+    {
+        _dataRepository = new DataRepository();
+    }
+    
     public EventService(DataRepository dataRepository)
     {
         _dataRepository = dataRepository;

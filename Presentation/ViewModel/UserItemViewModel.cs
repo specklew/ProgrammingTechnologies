@@ -3,75 +3,74 @@ using Services.API;
 using Services.Data;
 using System.Windows.Input;
 
-namespace Presentation.ViewModel
+namespace Presentation.ViewModel;
+
+public class UserItemViewModel : ViewModelBase
 {
-    public class UserItemViewModel : ViewModelBase
+    private int _id;
+    private string _name;
+    private int _age;
+
+    private readonly IUserService _service;
+
+    public UserItemViewModel(int id, string firstName, int lastName)
     {
-        private int _id;
-        private string _name;
-        private int _age;
+        _id = id;
+        _name = firstName;
+        _age = lastName;
 
-        private readonly IUserService _service;
+        _service = new UserService();
+        UpdateCommand = new RelayCommand(_ => { UpdateUser(); }, _ => CanUpdate);
+    }
 
-        public UserItemViewModel(int id, string firstName, int lastName)
+    public UserItemViewModel()
+    {
+        _service = new UserService();
+        UpdateCommand = new RelayCommand(_ => { UpdateUser(); }, _ => CanUpdate);
+    }
+
+    public int Id
+    {
+        get => _id;
+
+        set
         {
-            _id = id;
-            _name = firstName;
-            _age = lastName;
-
-            _service = new UserService();
-            UpdateCommand = new RelayCommand(_ => { UpdateUser(); }, _ => CanUpdate);
+            _id = value;
+            OnPropertyChanged(nameof(Id));
         }
+    }
 
-        public UserItemViewModel()
+    public string Name
+    {
+        get => _name;
+        set
         {
-            _service = new UserService();
-            UpdateCommand = new RelayCommand(_ => { UpdateUser(); }, _ => CanUpdate);
-        }
+            _name = value;
 
-        public int Id
+            OnPropertyChanged(nameof(Name));
+        }
+    }
+
+    public int Age
+    {
+        get => _age;
+        set
         {
-            get => _id;
+            _age = value;
 
-            set
-            {
-                _id = value;
-                OnPropertyChanged(nameof(Id));
-            }
+            OnPropertyChanged(nameof(Age));
         }
+    }
 
-        public string Name
-        {
-            get => _name;
-            set
-            {
-                _name = value;
+    public ICommand UpdateCommand { get; }
 
-                OnPropertyChanged(nameof(Name));
-            }
-        }
+    public bool CanUpdate => !(
+        string.IsNullOrWhiteSpace(Name) ||
+        string.IsNullOrWhiteSpace(Age.ToString())
+    );
 
-        public int Age
-        {
-            get => _age;
-            set
-            {
-                _age = value;
-
-                OnPropertyChanged(nameof(Age));
-            }
-        }
-
-        public ICommand UpdateCommand { get; }
-
-        public bool CanUpdate => !(
-            string.IsNullOrWhiteSpace(Name) ||
-            string.IsNullOrWhiteSpace(Age.ToString())
-        );
-
-        private void UpdateUser()
-        {
-            _service.UpdateUser(Id, Name, Age);
-        }
+    private void UpdateUser()
+    {
+        _service.UpdateUser(Id, Name, Age);
     }
 }

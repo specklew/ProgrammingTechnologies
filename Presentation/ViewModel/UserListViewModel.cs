@@ -17,6 +17,9 @@ public class UserListViewModel : ViewModelBase
     private ObservableCollection<UserItemViewModel> _userViewModels;
     private UserItemViewModel _selectedViewModel;
     private bool _isUserViewModelSelected;
+    
+    private Visibility _isUserViewModelSelectedVisibility;
+    
     public UserListViewModel()
     {
         _service = new UserService();
@@ -109,8 +112,6 @@ public class UserListViewModel : ViewModelBase
             OnPropertyChanged(nameof(IsUserViewModelSelected));
         }
     }
-
-    private Visibility _isUserViewModelSelectedVisibility;
 
     public Visibility IsUserViewModelSelectedVisibility
     {

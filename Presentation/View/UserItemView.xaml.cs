@@ -1,15 +1,14 @@
 ﻿using System.Windows.Controls;
 
-namespace Presentation.View
+namespace Presentation.View;
+
+/// <summary>
+/// Interaction logic for UserItemView.xaml
+/// </summary>
+public partial class UserItemView : UserControl
 {
-    /// <summary>
-    /// Interaction logic for UserItemView.xaml
-    /// </summary>
-    public partial class UserItemView : UserControl
+    public UserItemView()
     {
-        public UserItemView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }
