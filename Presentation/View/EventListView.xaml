@@ -3,10 +3,69 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewmodel="clr-namespace:Presentation.ViewModel"
              xmlns:local="clr-namespace:Presentation.View"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="780" Background="White">
+    <UserControl.DataContext>
+        <viewmodel:EventListViewModel/>
+    </UserControl.DataContext>
+
+
     <Grid>
-            
+        <Grid.Resources>
+            <Style TargetType="TextBox">
+                <Setter Property="Padding" Value="2 1" />
+                <Setter Property="BorderBrush" Value="LightGray" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="TextBox">
+                            <StackPanel>
+                                <ItemsControl ItemsSource="{TemplateBinding Validation.Errors}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Foreground="Red"
+                                                       Text="{Binding ErrorContent}">
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Grid.Resources>
+
+        <ListView Margin="270,140,10,10" 
+                  ItemsSource="{Binding EventViewModels, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding SelectedVm}" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" Width="50" DisplayMemberBinding="{Binding Id}" />
+                    <GridViewColumn Header="UserId" Width="150" DisplayMemberBinding="{Binding UserId}" />
+                    <GridViewColumn Header="ProductId" Width="240" DisplayMemberBinding="{Binding ProductId}" />
+                    <GridViewColumn Header="Time" Width="50" DisplayMemberBinding="{Binding EventTime}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBox TextWrapping="Wrap" Text="{Binding Id, UpdateSourceTrigger=PropertyChanged}" Margin="355,10,124,366"/>
+        <TextBox TextWrapping="Wrap" Text="{Binding UserId, UpdateSourceTrigger=PropertyChanged}" Margin="355,40,124,336"/>
+        <TextBox TextWrapping="Wrap" Text="{Binding ProductId, UpdateSourceTrigger=PropertyChanged}" Margin="355,71,124,305"/>
+        <TextBox TextWrapping="Wrap" Text="{Binding EventTime, UpdateSourceTrigger=PropertyChanged}" Margin="355,101,124,275"/>
+
+        <Button Content="Add" Margin="661,10,10,351" DataContext="{Binding AddCommand, Mode=OneWay}"/>
+        <Button Content="Remove" Margin="661,55,10,305" DataContext="{Binding DeleteCommand, Mode=OneWay}"/>
+
+        <Label Content="Id" Margin="270,10,430,366"/>
+        <Label Content="UserId" Margin="270,40,430,336" RenderTransformOrigin="0.526,0.655"/>
+        <Label Content="ProductId" Margin="270,71,430,305"/>
+        <Label Content="EventTime" Margin="270,101,450,275"/>
+        <Grid Margin="10,10,515,10"
+            Visibility="{Binding IsEventViewModelSelectedVisibility}">
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="380" Margin="10,0,0,0" VerticalAlignment="Center" Width="250">
+                <view:EventItemView/>
+            </Border>
+        </Grid>
     </Grid>
 </UserControl>
