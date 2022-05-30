@@ -12,6 +12,7 @@ public class UserItemViewModel : ViewModelBase
     private int _age;
 
     private readonly IUserService _service;
+    private ICommand _UpdateCommand;
 
     public UserItemViewModel(int id, string firstName, int age)
     {
@@ -20,13 +21,13 @@ public class UserItemViewModel : ViewModelBase
         _age = age;
 
         _service = new UserService();
-        UpdateCommand = new RelayCommand(_ => { UpdateUser(); }, _ => CanUpdate);
+        _UpdateCommand = new RelayCommand(_ => { UpdateUser(); }, _ => CanUpdate);
     }
 
     public UserItemViewModel()
     {
         _service = new UserService();
-        UpdateCommand = new RelayCommand(_ => { UpdateUser(); }, _ => CanUpdate);
+        _UpdateCommand = new RelayCommand(_ => { UpdateUser(); }, _ => CanUpdate);
     }
 
     public int Id
@@ -62,7 +63,10 @@ public class UserItemViewModel : ViewModelBase
         }
     }
 
-    public ICommand UpdateCommand { get; }
+    public ICommand UpdateCommand 
+    {
+        get => _UpdateCommand;
+    }
 
     public bool CanUpdate => !(
         string.IsNullOrWhiteSpace(Name) ||
