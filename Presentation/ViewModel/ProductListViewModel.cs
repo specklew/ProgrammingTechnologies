@@ -1,6 +1,5 @@
 ﻿using Presentation.ViewModel.MVVM;
 using System.Collections.ObjectModel;
-using System.Globalization;
 using System.Windows;
 using System.Windows.Input;
 using Services.Data;
@@ -41,7 +40,6 @@ public class ProductListViewModel : ViewModelBase
     private void AddProduct()
     {
         _service.AddProduct(_id, _name, _description, _price);
-        
     }
 
     private void DeleteProduct()
@@ -157,9 +155,8 @@ public class ProductListViewModel : ViewModelBase
     }
     
     public bool CanAdd => !(
-        string.IsNullOrWhiteSpace(Id.ToString()) || 
         string.IsNullOrWhiteSpace(Name) || 
         string.IsNullOrWhiteSpace(Description) ||
-        string.IsNullOrWhiteSpace(Price.ToString(CultureInfo.CurrentCulture)
-        ));
+        Price == 0.0f
+        );
 }
