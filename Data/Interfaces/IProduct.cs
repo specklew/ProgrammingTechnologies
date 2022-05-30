@@ -3,7 +3,7 @@ namespace Data.Interfaces;
 public interface IProduct
 {
     public int Id { get; }
-    string Name { get; }
+    string Name { get; set; }
     string Description { get; set; }
-    float Price { get; set; }
+    int Price { get; set; }
 }

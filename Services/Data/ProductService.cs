@@ -41,17 +41,17 @@ public class ProductService : IProductService
         return Transform(_dataRepository.GetProduct(productId));
     }
 
-    public bool AddProduct(int productId, string name, float price)
+    public bool AddProduct(int productId, string name, int price)
     {
         return _dataRepository.AddProduct(productId, name, price);
     }
 
-    public bool AddProduct(int productId, string name, string description, float price)
+    public bool AddProduct(int productId, string name, string description, int price)
     {
         return _dataRepository.AddProduct(productId, name, description, price);
     }
 
-    public bool UpdateProduct(int productId, string name, string description, float price)
+    public bool UpdateProduct(int productId, string name, string description, int price)
     {
         return _dataRepository.UpdateProduct(productId, name, description, price);
     }

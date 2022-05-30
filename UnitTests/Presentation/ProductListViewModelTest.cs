@@ -16,10 +16,10 @@ namespace MusicShopTests.Presentation;
             {
                 ProductViewModels = new ObservableCollection<ProductItemViewModel>
                 {
-                    new(0, "name1", "description1", 100.0f),
-                    new(1, "name2", "description2", 200.0f),
-                    new(2, "name3", "description3", 300.0f),
-                    new(3, "name4", "description4", 400.0f)
+                    new(0, "name1", "description1", 100),
+                    new(1, "name2", "description2", 200),
+                    new(2, "name3", "description3", 300),
+                    new(3, "name4", "description4", 400)
                 }
             };
         }
@@ -55,7 +55,7 @@ namespace MusicShopTests.Presentation;
             var addCommand = _productListViewModel.AddCommand;
             _productListViewModel.Name = "test";
             _productListViewModel.Description = "desc";
-            _productListViewModel.Price = 100.0f;
+            _productListViewModel.Price = 100;
             var can = _productListViewModel.CanAdd;
             Assert.IsTrue(addCommand.CanExecute(can));
         }

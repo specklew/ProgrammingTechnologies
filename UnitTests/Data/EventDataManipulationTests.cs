@@ -16,7 +16,7 @@ public class EventDataManiupulationTests
         _dataRepository.NukeData();
         
         _dataRepository.AddUser(0, "Joe Doe", 25);
-        _dataRepository.AddProduct(0, "Bass Guitar", "Pluck, pluck, bass goes brrr", 200.0f);
+        _dataRepository.AddProduct(0, "Bass Guitar", "Pluck, pluck, bass goes brrr", 200);
         _dataRepository.AddEvent(0, 0, 0);
     }
 

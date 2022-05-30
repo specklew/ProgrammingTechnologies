@@ -16,7 +16,7 @@ public class ProductLogicTests
         
         _service.NukeData();
         
-        _service.AddProduct(0, "Harp", "47 strings", 1500.0f);
+        _service.AddProduct(0, "Harp", "47 strings", 1500);
     }
     
     [TestMethod]
@@ -29,7 +29,7 @@ public class ProductLogicTests
     [TestMethod]
     public void TestUpdateProductReturnNewData()
     {
-        _service.UpdateProduct(0, "Harp", "50 strings", 1600.0f);
-        Assert.AreEqual(1600.0f, _service.GetProduct(0).Price);
+        _service.UpdateProduct(0, "Harp", "50 strings", 1600);
+        Assert.AreEqual(1600, _service.GetProduct(0).Price);
     }
 }

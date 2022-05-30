@@ -437,7 +437,7 @@ namespace Data
 		
 		private string _product_description;
 		
-		private float _product_price;
+		private int _product_price;
 		
 		private EntitySet<Events> _Events;
 		
@@ -451,7 +451,7 @@ namespace Data
     partial void Onproduct_nameChanged();
     partial void Onproduct_descriptionChanging(string value);
     partial void Onproduct_descriptionChanged();
-    partial void Onproduct_priceChanging(float value);
+    partial void Onproduct_priceChanging(int value);
     partial void Onproduct_priceChanged();
     #endregion
 		
@@ -522,7 +522,7 @@ namespace Data
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_product_price")]
-		public float product_price
+		public int product_price
 		{
 			get
 			{

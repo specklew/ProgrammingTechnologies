@@ -160,7 +160,7 @@ public class DataRepository : IDataLayerApi
         return productDatabase != null ? Transform(productDatabase) : null;
     }
 
-    public bool AddProduct(int productId, string name, float price)
+    public bool AddProduct(int productId, string name, int price)
     {
         if (GetProduct(productId) != null) return false;
         var newReader = new Products
@@ -175,7 +175,7 @@ public class DataRepository : IDataLayerApi
         return true;
     }
 
-    public bool AddProduct(int productId, string name, string description, float price)
+    public bool AddProduct(int productId, string name, string description, int price)
     {
         if (GetProduct(productId) != null) return false;
         var newReader = new Products
@@ -190,7 +190,7 @@ public class DataRepository : IDataLayerApi
         return true;
     }
 
-    public bool UpdateProduct(int productId, string name, string description, float price)
+    public bool UpdateProduct(int productId, string name, string description, int price)
     {
         var product = _context.Products.SingleOrDefault(product => product.product_id == productId);
         if (product == null) return false;

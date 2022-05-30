@@ -31,8 +31,8 @@
         <TextBox TextWrapping="Wrap" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" Margin="355,71,124,305"/>
         <TextBox TextWrapping="Wrap" Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" Margin="355,101,124,275"/>
 
-        <Button Content="Add" Margin="661,10,10,351" DataContext="{Binding AddCommand, Mode=OneWay}"/>
-        <Button Content="Remove" Margin="661,55,10,305" DataContext="{Binding DeleteCommand, Mode=OneWay}"/>
+        <Button Content="Add" Margin="661,10,10,351" Command="{Binding AddCommand, Mode=OneWay}" />
+        <Button Content="Remove" Margin="661,55,10,305" Command="{Binding DeleteCommand, Mode=OneWay}" />
 
         <Label Content="ID" Margin="270,10,430,366"/>
         <Label Content="Name" Margin="270,40,430,336" RenderTransformOrigin="0.526,0.655"/>
@@ -41,7 +41,7 @@
         <Grid Margin="10,10,515,10"
             Visibility="{Binding IsProductViewModelSelectedVisibility}">
             <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="380" Margin="10,0,0,0" VerticalAlignment="Center" Width="250">
-                <local:ProductItemView/>
+                <local:ProductItemView DataContext="{Binding SelectedVm}"/>
             </Border>
         </Grid>
     </Grid>

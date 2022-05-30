@@ -35,9 +35,9 @@ public interface IDataLayerApi
 
     IEnumerable<IProduct> GetAllProducts();
     IProduct GetProduct(int productId);
-    bool AddProduct(int productId, string name, float price);
-    bool AddProduct(int productId, string name, string description, float price);
-    bool UpdateProduct(int productId, string name, string description, float price);
+    bool AddProduct(int productId, string name, int price);
+    bool AddProduct(int productId, string name, string description, int price);
+    bool UpdateProduct(int productId, string name, string description, int price);
     bool DeleteProduct(int productId);
 
     #endregion

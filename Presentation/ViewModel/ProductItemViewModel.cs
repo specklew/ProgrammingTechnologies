@@ -11,11 +11,11 @@ public class ProductItemViewModel : ViewModelBase
     private int _id;
     private string _name;
     private string _description;
-    private float _price;
+    private int _price;
 
     private readonly IProductService _service;
 
-    public ProductItemViewModel(int id, string name, string description, float price)
+    public ProductItemViewModel(int id, string name, string description, int price)
     {
         _id = id;
         _name = name;
@@ -65,7 +65,7 @@ public class ProductItemViewModel : ViewModelBase
         }
     }
 
-    public float Price
+    public int Price
     {
         get => _price;
         set

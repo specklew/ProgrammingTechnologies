@@ -22,7 +22,7 @@
       <Column Name="product_id" Type="System.Int32" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="product_name" Type="System.String" CanBeNull="false" />
       <Column Name="product_description" Type="System.String" CanBeNull="false" />
-      <Column Name="product_price" Type="System.Single" CanBeNull="false" />
+      <Column Name="product_price" Type="System.Int32" CanBeNull="false" />
       <Association Name="Products_Events" Member="Events" ThisKey="product_id" OtherKey="event_product" Type="Events" />
     </Type>
   </Table>

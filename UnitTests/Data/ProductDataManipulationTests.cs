@@ -17,7 +17,7 @@ public class ProductDataManipulationTests
 
         _dataRepository.NukeData();
         
-        _dataRepository.AddProduct(0, "Bass Guitar", "Pluck, pluck, bass goes brrr", 200.0f);
+        _dataRepository.AddProduct(0, "Bass Guitar", "Pluck, pluck, bass goes brrr", 200);
         _product = _dataRepository.GetProduct(0);
     }
 
@@ -32,9 +32,9 @@ public class ProductDataManipulationTests
     [TestMethod]
     public void TestUpdateProductReturnNewData()
     {
-        _dataRepository.UpdateProduct(0, "Test string","Test description", 150.0f);
+        _dataRepository.UpdateProduct(0, "Test string","Test description", 150);
         Assert.AreEqual("Test string", _dataRepository.GetProduct(0).Name);
-        Assert.AreEqual(150.0f, _dataRepository.GetProduct(0).Price);
+        Assert.AreEqual(150, _dataRepository.GetProduct(0).Price);
     }
 
     [TestMethod]

@@ -11,7 +11,7 @@ public class ProductListViewModel : ViewModelBase
     private int _id;
     private string _name;
     private string _description;
-    private float _price;
+    private int _price;
 
     private readonly ProductService _service;
     private ObservableCollection<ProductItemViewModel> _productViewModels;
@@ -100,7 +100,7 @@ public class ProductListViewModel : ViewModelBase
         }
     }
 
-    public float Price
+    public int Price
     {
         get => _price;
         set
@@ -157,6 +157,6 @@ public class ProductListViewModel : ViewModelBase
     public bool CanAdd => !(
         string.IsNullOrWhiteSpace(Name) || 
         string.IsNullOrWhiteSpace(Description) ||
-        Price == 0.0f
+        Price == 0
         );
 }
