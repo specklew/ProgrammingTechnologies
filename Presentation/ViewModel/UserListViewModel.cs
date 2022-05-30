@@ -145,5 +145,5 @@ public class UserListViewModel : ViewModelBase
         }
     }
 
-    public bool CanAdd => !(string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(Age.ToString()) || string.IsNullOrEmpty(Id.ToString()));
+    public bool CanAdd => !(string.IsNullOrWhiteSpace(Name) || Age == 0);
 }

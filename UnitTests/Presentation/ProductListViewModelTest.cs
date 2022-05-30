@@ -55,6 +55,7 @@ namespace MusicShopTests.Presentation;
             var addCommand = _productListViewModel.AddCommand;
             _productListViewModel.Name = "test";
             _productListViewModel.Description = "desc";
+            _productListViewModel.Price = 100.0f;
             var can = _productListViewModel.CanAdd;
             Assert.IsTrue(addCommand.CanExecute(can));
         }
