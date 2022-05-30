@@ -57,7 +57,13 @@
     <Compile Include="Logic\EventLogicTests.cs" />
     <Compile Include="Logic\ProductLogicTests.cs" />
     <Compile Include="Logic\UserLogicTests.cs" />
+    <Compile Include="Presentation\EventItemViewModelTest.cs" />
+    <Compile Include="Presentation\EventListViewModelTest.cs" />
     <Compile Include="Presentation\MainWindowViewModelTest.cs" />
+    <Compile Include="Presentation\ProductItemViewModelTest.cs" />
+    <Compile Include="Presentation\ProductListViewModelTest.cs" />
+    <Compile Include="Presentation\UserItemViewModelTest.cs" />
+    <Compile Include="Presentation\UserListViewModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
