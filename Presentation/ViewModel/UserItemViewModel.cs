@@ -13,11 +13,11 @@ public class UserItemViewModel : ViewModelBase
 
     private readonly IUserService _service;
 
-    public UserItemViewModel(int id, string firstName, int lastName)
+    public UserItemViewModel(int id, string firstName, int age)
     {
         _id = id;
         _name = firstName;
-        _age = lastName;
+        _age = age;
 
         _service = new UserService();
         UpdateCommand = new RelayCommand(_ => { UpdateUser(); }, _ => CanUpdate);
