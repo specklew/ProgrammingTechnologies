@@ -57,6 +57,7 @@
     <Compile Include="Logic\EventLogicTests.cs" />
     <Compile Include="Logic\ProductLogicTests.cs" />
     <Compile Include="Logic\UserLogicTests.cs" />
+    <Compile Include="Presentation\MainWindowViewModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -67,13 +68,14 @@
       <Project>{375a6401-906a-4ed8-95c9-3c4678c43aec}</Project>
       <Name>Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Presentation\Presentation.csproj">
+      <Project>{a642beeb-667c-444d-87d8-c6e628a8cf11}</Project>
+      <Name>Presentation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Services\Services.csproj">
       <Project>{1c8085f6-988b-4c5b-bc61-14ec478ddeeb}</Project>
       <Name>Services</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Presentation" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

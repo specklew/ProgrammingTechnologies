@@ -42,10 +42,10 @@ public class MainWindowViewModel : ViewModelBase
                 SelectedVm = new UserListViewModel();
                 break;
             case "ProductListView":
-                //SelectedVm = new ProductListViewModel();
+                SelectedVm = new ProductListViewModel();
                 break;
             case "EventListView":
-                //SelectedVm = new EventListViewModel();
+                SelectedVm = new EventListViewModel();
                 break;
         }
     }
