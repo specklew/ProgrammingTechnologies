@@ -21,7 +21,7 @@ public class UserService : IUserService
 
     private static IUserData Transform(IUser user)
     {
-        return user == null ? null : new UserData(user.Id);
+        return user == null ? null : new UserData(user.Id, user.Name, user.Age);
     }
 
     public IEnumerable<IUserData> GetAllUsers()
@@ -53,5 +53,10 @@ public class UserService : IUserService
     public bool DeleteUser(int userId)
     {
         return _dataRepository.DeleteUser(userId);
+    }
+    
+    public void NukeData()
+    {
+        _dataRepository.NukeData();
     }
 }

@@ -68,7 +68,6 @@ public class DataRepository : IDataLayerApi
     {
         var user = _context.Users.SingleOrDefault(user => user.user_id == userId);
         if (user == null) return false;
-        user.user_id = userId;
         user.user_name = userName;
         user.user_age = userAge;
         _context.SubmitChanges();
@@ -130,7 +129,6 @@ public class DataRepository : IDataLayerApi
     {
         var events = _context.Events.SingleOrDefault(events => events.event_id == eventId);
         if (events == null) return false;
-        events.event_id = userId;
         events.event_user = userId;
         events.event_product = productId;
         _context.SubmitChanges();
@@ -196,7 +194,6 @@ public class DataRepository : IDataLayerApi
     {
         var product = _context.Products.SingleOrDefault(product => product.product_id == productId);
         if (product == null) return false;
-        product.product_id = productId;
         product.product_name = name;
         product.product_description = description;
         product.product_price = price;

@@ -60,4 +60,9 @@ public class ProductService : IProductService
     {
         return _dataRepository.DeleteProduct(productId);
     }
+    
+    public void NukeData()
+    {
+        _dataRepository.NukeData();
+    }
 }

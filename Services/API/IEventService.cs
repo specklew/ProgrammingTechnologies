@@ -10,4 +10,5 @@ public interface IEventService
     bool AddEvent(int eventId, int userId, int productId);
     bool UpdateEvent(int eventId, int userId, int productId);
     bool DeleteEvent(int eventId);
+    void NukeData();
 }

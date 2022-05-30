@@ -60,4 +60,9 @@ public class EventService : IEventService
     {
         return _dataRepository.DeleteEvent(eventId);
     }
+
+    public void NukeData()
+    {
+        _dataRepository.NukeData();
+    }
 }
