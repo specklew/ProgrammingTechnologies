@@ -13,7 +13,7 @@
 
     <Grid>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Height="400" Margin="0,10,0,0" VerticalAlignment="Top" Width="780">
-            <ContentControl Content="{Binding SelectedVm}"/>
+            <UserControl Content="{Binding SelectedVm}"/>
         </Border>
         <Button Content="Users" Command="{Binding SwitchViewCommand}" CommandParameter="UserListView" HorizontalAlignment="Left" Margin="10,415,0,10" Width="96"/>
         <Button Content="Products" Command="{Binding SwitchViewCommand}" CommandParameter="ProductListView" HorizontalAlignment="Left" Margin="111,415,0,10" Width="96"/>
