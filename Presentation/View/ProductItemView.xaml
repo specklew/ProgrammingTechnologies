@@ -6,7 +6,55 @@
              xmlns:local="clr-namespace:Presentation.View"
              mc:Ignorable="d" 
              d:DesignHeight="380" d:DesignWidth="250" Background="White">
+    <!--<UserControl.DataContext>
+        <local:UserItemViewModel/>
+    </UserControl.DataContext>-->
     <Grid>
-            
+        <Label Content="ID" Margin="10,10,175,346"/>
+        <Label Content="Name" Margin="10,39,175,317" RenderTransformOrigin="0.526,0.655"/>
+        <Label Content="Description" Margin="10,68,175,288"/>
+        <Label Content="Price" Margin="10,97,175,259"/>
+
+        <Label Content="{Binding Id}" Margin="85,10,50,346"/>
+        <Label Content="{Binding Name}" Margin="85,39,50,317" RenderTransformOrigin="0.526,0.655"/>
+        <Label Content="{Binding Description}" Margin="85,68,50,288"/>
+        <Label Content="{Binding Price}" Margin="85,97,50,259"/>
+
+        <Label Content="Name" Margin="10,268,175,88"/>
+        <Label Content="Description" Margin="10,297,175,59" RenderTransformOrigin="0.526,0.655"/>
+        <Label Content="Price" Margin="10,326,175,27"/>
+
+        <TextBox TextWrapping="Wrap" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Margin="85,268,10,88" RenderTransformOrigin="0.5,0.5">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.106"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <TextBox TextWrapping="Wrap" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" Margin="85,297,10,59" RenderTransformOrigin="0.5,0.5">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.106"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <TextBox TextWrapping="Wrap" Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" Margin="85,326,10,27" RenderTransformOrigin="0.5,0.5">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.106"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <Button Content="Update" HorizontalAlignment="Center" Margin="0,358,0,0" VerticalAlignment="Top" Width="230" Command="{Binding UpdateCommand, Mode=OneWay}" IsEnabled="{Binding CanUpdate, Mode=OneWay}"/>
+
     </Grid>
 </UserControl>
