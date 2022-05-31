@@ -4,6 +4,8 @@ using Services.Data;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
+using Presentation.Model;
+using Presentation.Model.API;
 
 namespace Presentation.ViewModel;
 
@@ -12,8 +14,8 @@ public class UserListViewModel : ViewModelBase
     private int _id;
     private string _name;
     private int _age;
-
-    private readonly IUserService _service;
+    
+    private readonly IUserModel _model;
     private ObservableCollection<UserItemViewModel> _userViewModels;
     private UserItemViewModel _selectedViewModel;
     private bool _isUserViewModelSelected;
@@ -22,7 +24,7 @@ public class UserListViewModel : ViewModelBase
     
     public UserListViewModel()
     {
-        _service = new UserService();
+        _model = new UserModel();
         _userViewModels = new ObservableCollection<UserItemViewModel>();
 
         AddCommand = new RelayCommand(e => { AddUser(); },  _ => CanAdd);
@@ -40,13 +42,13 @@ public class UserListViewModel : ViewModelBase
 
     private void AddUser()
     {
-        _service.AddUser(_id, _name, _age);
+        _model.Add(_id, _name, _age);
         GetUsers();
     }
 
     private void DeleteUser()
     {
-        _service.DeleteUser(SelectedVm.Id);
+        _model.Delete(SelectedVm.Id);
 
         GetUsers();
         OnPropertyChanged(nameof(UserViewModels));
@@ -56,7 +58,7 @@ public class UserListViewModel : ViewModelBase
     {
         _userViewModels.Clear();
 
-        foreach (var c in _service.GetAllUsers())
+        foreach (var c in _model.Users)
         {
             _userViewModels.Add(new UserItemViewModel(c.Id, c.Name, c.Age));
         }

@@ -1,29 +1,17 @@
-using System.Collections.Generic;
-using Presentation.API;
-using Services.API;
-using Services.Data;
+using Presentation.Model.API;
 
 namespace Presentation.Model;
 
-public class UserModelData : IUserModelData
+internal class UserModelData : IUserModelData
 {
+    public int Id { get; }
+    public string Name { get; set; }
+    public int Age { get; set; }
 
-    public UserModelData()
+    internal UserModelData(int id, string name, int age)
     {
-        Service = new UserService();
-    }
-    
-    public UserModelData(IUserService service)
-    {
-        Service = service;
-    }
-
-    public IUserService Service { get; }
-
-    public IEnumerable<IUserData> User => Service.GetAllUsers();
-
-    public IUserModelView CreateUser(int id, string name, int age)
-    {
-        return new UserModelView(id, name, age);
+        Id = id;
+        Name = name;
+        Age = age;
     }
 }

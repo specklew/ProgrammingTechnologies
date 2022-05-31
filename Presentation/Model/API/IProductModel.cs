@@ -1,6 +1,6 @@
-namespace Presentation.API;
+namespace Presentation.Model.API;
 
-public interface IProductModelView
+public interface IProductModel
 {
     public int Id { get; }
     string Name { get; }

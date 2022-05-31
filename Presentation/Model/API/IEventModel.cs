@@ -1,8 +1,8 @@
 using System;
 
-namespace Presentation.API;
+namespace Presentation.Model.API;
 
-public interface IEventModelView
+public interface IEventModel
 {
     public int Id { get; }
     public int UserId { get; set; }

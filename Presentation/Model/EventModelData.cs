@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Presentation.API;
+using Presentation.Model.API;
 using Services.API;
 
 namespace Presentation.Model;
@@ -16,8 +16,8 @@ public class EventModelData : IEventModelData
 
     public IEnumerable<IEventData> Event => Service.GetAllEvents();
 
-    public IEventModelView Create(int id, int userId, int productId, DateTime time)
+    public IEventModel Create(int id, int userId, int productId, DateTime time)
     {
-        return new EventModelView(id, userId, productId, time);
+        return new EventModel(id, userId, productId, time);
     }
 }

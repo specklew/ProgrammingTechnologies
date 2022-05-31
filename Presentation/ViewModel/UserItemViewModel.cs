@@ -1,7 +1,7 @@
 ﻿using Presentation.ViewModel.MVVM;
-using Services.API;
-using Services.Data;
 using System.Windows.Input;
+using Presentation.Model;
+using Presentation.Model.API;
 
 namespace Presentation.ViewModel;
 
@@ -11,23 +11,16 @@ public class UserItemViewModel : ViewModelBase
     private string _name;
     private int _age;
 
-    private readonly IUserService _service;
-    private ICommand _UpdateCommand;
+    private readonly IUserModel _model;
 
-    public UserItemViewModel(int id, string firstName, int age)
+    public UserItemViewModel(int id = 0, string firstName = null, int age = 0)
     {
         _id = id;
         _name = firstName;
         _age = age;
 
-        _service = new UserService();
-        _UpdateCommand = new RelayCommand(_ => { UpdateUser(); }, _ => CanUpdate);
-    }
-
-    public UserItemViewModel()
-    {
-        _service = new UserService();
-        _UpdateCommand = new RelayCommand(_ => { UpdateUser(); }, _ => CanUpdate);
+        _model = new UserModel();
+        UpdateCommand = new RelayCommand(_ => { UpdateUser(); }, _ => CanUpdate);
     }
 
     public int Id
@@ -63,10 +56,7 @@ public class UserItemViewModel : ViewModelBase
         }
     }
 
-    public ICommand UpdateCommand 
-    {
-        get => _UpdateCommand;
-    }
+    public ICommand UpdateCommand { get; }
 
     public bool CanUpdate => !(
         string.IsNullOrWhiteSpace(Name) ||
@@ -75,6 +65,6 @@ public class UserItemViewModel : ViewModelBase
 
     private void UpdateUser()
     {
-        _service.UpdateUser(Id, Name, Age);
+        _model.Update(Id, Name, Age);
     }
 }

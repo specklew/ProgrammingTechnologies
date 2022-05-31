@@ -1,6 +1,6 @@
-namespace Presentation.API;
+namespace Presentation.Model.API;
 
-public interface IUserModelView
+public interface IUserModelData
 {
     int Id { get; }
     string Name { get; set; }

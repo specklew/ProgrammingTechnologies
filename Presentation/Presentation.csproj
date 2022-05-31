@@ -57,6 +57,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\API\IEventModelData.cs" />
+    <Compile Include="Model\API\IEventModel.cs" />
+    <Compile Include="Model\API\IProductModelData.cs" />
+    <Compile Include="Model\API\IProductModel.cs" />
+    <Compile Include="Model\API\IUserModel.cs" />
+    <Compile Include="Model\API\IUserModelData.cs" />
     <Compile Include="ViewModel\EventItemViewModel.cs" />
     <Compile Include="ViewModel\EventListViewModel.cs" />
     <Compile Include="ViewModel\ProductItemViewModel.cs" />
@@ -108,12 +114,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="API\IEventModelData.cs" />
-    <Compile Include="API\IEventModelView.cs" />
-    <Compile Include="API\IProductModelData.cs" />
-    <Compile Include="API\IProductModelView.cs" />
-    <Compile Include="API\IUserModelData.cs" />
-    <Compile Include="API\IUserModelView.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -129,11 +129,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\EventModelData.cs" />
-    <Compile Include="Model\EventModelView.cs" />
+    <Compile Include="Model\EventModel.cs" />
     <Compile Include="Model\ProductModelData.cs" />
-    <Compile Include="Model\ProductModelView.cs" />
+    <Compile Include="Model\ProductModel.cs" />
+    <Compile Include="Model\UserModel.cs" />
     <Compile Include="Model\UserModelData.cs" />
-    <Compile Include="Model\UserModelView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
