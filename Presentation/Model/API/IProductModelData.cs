@@ -1,11 +1,9 @@
-using System.Collections.Generic;
-using Services.API;
-
 namespace Presentation.Model.API;
 
 public interface IProductModelData
 {
-    public IProductService Service { get; }
-    IEnumerable<IProductData> Product { get; }
-    IProductModel CreateProduct(int productId, string name, string description, float price);
+    public int Id { get; }
+    string Name { get; }
+    string Description { get; set; }
+    int Price { get; set; }
 }

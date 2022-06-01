@@ -1,8 +1,8 @@
 using System;
 using System.Windows.Input;
+using Presentation.Model;
+using Presentation.Model.API;
 using Presentation.ViewModel.MVVM;
-using Services.API;
-using Services.Data;
 
 namespace Presentation.ViewModel;
 
@@ -13,35 +13,19 @@ public class EventItemViewModel : ViewModelBase
     private int _productId;
     private DateTime _eventTime;
 
-    private readonly IEventService _service;
+    private readonly IEventModel _model;
 
-    public EventItemViewModel(int id, int userId, int productId, DateTime eventTime)
+    public EventItemViewModel(int id = 0, int userId = 0, int productId = 0, DateTime eventTime = default)
     {
         _id = id;
         _userId = userId;
         _productId = productId;
         _eventTime = eventTime;
 
-        _service = new EventService();
+        _model = new EventModel();
         UpdateCommand = new RelayCommand(_ => { UpdateEvent(); }, _ => CanUpdate);
     }
     
-    public EventItemViewModel(int id, int userId, int productId)
-    {
-        _id = id;
-        _userId = userId;
-        _productId = productId;
-
-        _service = new EventService();
-        UpdateCommand = new RelayCommand(_ => { UpdateEvent(); }, _ => CanUpdate);
-    }
-
-    public EventItemViewModel()
-    {
-        _service = new EventService();
-        UpdateCommand = new RelayCommand(_ => { UpdateEvent(); }, _ => CanUpdate);
-    }
-
     public int Id
     {
         get => _id;
@@ -96,6 +80,6 @@ public class EventItemViewModel : ViewModelBase
     
     private void UpdateEvent()
     {
-        _service.UpdateEvent(_id, _userId, _productId);
+        _model.Update(_id, _userId, _productId);
     }
 }

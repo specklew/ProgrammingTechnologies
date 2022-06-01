@@ -2,7 +2,8 @@
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
-using Services.Data;
+using Presentation.Model;
+using Presentation.Model.API;
 
 namespace Presentation.ViewModel;
 
@@ -13,7 +14,7 @@ public class ProductListViewModel : ViewModelBase
     private string _description;
     private int _price;
 
-    private readonly ProductService _service;
+    private readonly IProductModel _model;
     private ObservableCollection<ProductItemViewModel> _productViewModels;
     private ProductItemViewModel _selectedViewModel;
     private bool _isProductViewModelSelected;
@@ -22,7 +23,7 @@ public class ProductListViewModel : ViewModelBase
 
     public ProductListViewModel()
     {
-        _service = new ProductService();
+        _model = new ProductModel();
         _productViewModels = new ObservableCollection<ProductItemViewModel>();
         
         AddCommand = new RelayCommand(_ => { AddProduct(); },  _ => CanAdd);
@@ -39,12 +40,12 @@ public class ProductListViewModel : ViewModelBase
     
     private void AddProduct()
     {
-        _service.AddProduct(_id, _name, _description, _price);
+        _model.Add(_id, _name, _description, _price);
     }
 
     private void DeleteProduct()
     {
-        _service.DeleteProduct(SelectedVm.Id);
+        _model.Delete(SelectedVm.Id);
 
         GetProducts();
         OnPropertyChanged(nameof(ProductViewModels));
@@ -54,7 +55,7 @@ public class ProductListViewModel : ViewModelBase
     {
         _productViewModels.Clear();
 
-        foreach (var c in _service.GetAllProducts())
+        foreach (var c in _model.Products)
         {
             _productViewModels.Add(new ProductItemViewModel(c.Id, c.Name, c.Description, c.Price));
         }

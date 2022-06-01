@@ -2,8 +2,9 @@ using System;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
+using Presentation.Model;
+using Presentation.Model.API;
 using Presentation.ViewModel.MVVM;
-using Services.Data;
 
 namespace Presentation.ViewModel;
 
@@ -14,7 +15,7 @@ public class EventListViewModel : ViewModelBase
     private int _productId;
     private DateTime _eventTime;
     
-    private readonly EventService _service;
+    private readonly IEventModel _model;
     private ObservableCollection<EventItemViewModel> _eventViewModels;
     private EventItemViewModel _selectedViewModel;
     private bool _isEventViewModelSelected;
@@ -23,7 +24,7 @@ public class EventListViewModel : ViewModelBase
     
     public EventListViewModel()
     {
-        _service = new EventService();
+        _model = new EventModel();
         _eventViewModels = new ObservableCollection<EventItemViewModel>();
         
         AddCommand = new RelayCommand(_ => { AddEvent(); },  _ => CanAdd);
@@ -40,13 +41,13 @@ public class EventListViewModel : ViewModelBase
 
     private void AddEvent()
     {
-        _service.AddEvent(_id, _userId, _productId);
+        _model.Add(_id, _userId, _productId);
         
     }
 
     private void DeleteEvent()
     {
-        _service.DeleteEvent(SelectedVm.Id);
+        _model.Delete(SelectedVm.Id);
 
         GetEvents();
         OnPropertyChanged(nameof(EventViewModels));
@@ -56,7 +57,7 @@ public class EventListViewModel : ViewModelBase
     {
         _eventViewModels.Clear();
 
-        foreach (var c in _service.GetAllEvents())
+        foreach (var c in _model.Events)
         {
             _eventViewModels.Add(new EventItemViewModel(c.Id, c.UserId, c.ProductId));
         }

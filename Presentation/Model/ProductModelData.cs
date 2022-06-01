@@ -1,20 +1,20 @@
-using System.Collections.Generic;
 using Presentation.Model.API;
-using Services.API;
 
 namespace Presentation.Model;
 
 public class ProductModelData : IProductModelData
 {
-    public ProductModelData(IProductService service)
-    {
-        Service = service;
-    }
-    public IProductService Service { get; }
-    public IEnumerable<IProductData> Product => Service.GetAllProducts();
+    public int Id { get; }
+    public string Name { get; }
+    public string Description { get; set; }
+    public int Price { get; set; }
     
-    public IProductModel CreateProduct(int productId, string name, string description, float price)
+    public ProductModelData(int productId, string name, string description, int price)
     {
-        return new ProductModel(productId, name, description, price);
+        Id = productId;
+        Name = name;
+        Description = description;
+        Price = price;
     }
+
 }

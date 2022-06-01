@@ -1,5 +1,7 @@
 ﻿using System.Globalization;
 using System.Windows.Input;
+using Presentation.Model;
+using Presentation.Model.API;
 using Presentation.ViewModel.MVVM;
 using Services.API;
 using Services.Data;
@@ -13,25 +15,19 @@ public class ProductItemViewModel : ViewModelBase
     private string _description;
     private int _price;
 
-    private readonly IProductService _service;
+    private readonly IProductModel _model;
 
-    public ProductItemViewModel(int id, string name, string description, int price)
+    public ProductItemViewModel(int id = 0, string name = null, string description = null, int price = 0)
     {
         _id = id;
         _name = name;
         _description = description;
         _price = price;
 
-        _service = new ProductService();
+        _model = new ProductModel();
         UpdateCommand = new RelayCommand(_ => { UpdateProduct(); }, _ => CanUpdate);
     }
 
-    public ProductItemViewModel()
-    {
-        _service = new ProductService();
-        UpdateCommand = new RelayCommand(_ => { UpdateProduct(); }, _ => CanUpdate);
-    }
-    
     public int Id
     {
         get => _id;
@@ -87,6 +83,6 @@ public class ProductItemViewModel : ViewModelBase
     
     private void UpdateProduct()
     {
-        _service.UpdateProduct(_id, _name, _description, _price);
+        _model.Update(_id, _name, _description, _price);
     }
 }

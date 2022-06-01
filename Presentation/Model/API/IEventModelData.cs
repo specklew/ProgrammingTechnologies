@@ -1,12 +1,11 @@
 using System;
-using System.Collections.Generic;
-using Services.API;
 
 namespace Presentation.Model.API;
 
 public interface IEventModelData
 {
-    IEventService Service { get; }
-    IEnumerable<IEventData> Event { get; } 
-    IEventModel Create(int id, int userId, int productId, DateTime time);
+    public int Id { get; }
+    public int UserId { get; set; }
+    public int ProductId { get; set; }
+    public DateTime EventTime { get; }
 }

@@ -1,11 +1,14 @@
 using System;
+using System.Collections.Generic;
+using Services.API;
 
 namespace Presentation.Model.API;
 
 public interface IEventModel
 {
-    public int Id { get; }
-    public int UserId { get; set; }
-    public int ProductId { get; set; }
-    public DateTime EventTime { get; }
+    IEventService Service { get; }
+    IEnumerable<IEventModelData> Events { get; }
+    public bool Add(int id, int userId, int productId);
+    public bool Delete(int id);
+    public bool Update(int id, int userId, int productId);
 }
