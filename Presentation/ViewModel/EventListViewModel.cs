@@ -22,9 +22,9 @@ public class EventListViewModel : ViewModelBase
     
     private Visibility _isEventViewModelSelectedVisibility;
     
-    public EventListViewModel()
+    public EventListViewModel(IEventModel model = default(EventModel))
     {
-        _model = new EventModel();
+        _model = model ?? new EventModel();
         _eventViewModels = new ObservableCollection<EventItemViewModel>();
         
         AddCommand = new RelayCommand(_ => { AddEvent(); },  _ => CanAdd);

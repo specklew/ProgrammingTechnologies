@@ -22,9 +22,9 @@ public class UserListViewModel : ViewModelBase
     
     private Visibility _isUserViewModelSelectedVisibility;
     
-    public UserListViewModel()
+    public UserListViewModel(IUserModel model = default(UserModel))
     {
-        _model = new UserModel();
+        _model = model ?? new UserModel();
         _userViewModels = new ObservableCollection<UserItemViewModel>();
 
         AddCommand = new RelayCommand(e => { AddUser(); },  _ => CanAdd);

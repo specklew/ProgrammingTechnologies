@@ -5,10 +5,6 @@ namespace Data;
 
 public interface IDataLayerApi
 {
-    IUser Transform(Users user);
-    IEvent Transform(Events events);
-    IProduct Transform(Products product);
-
     //CRUD:
     #region User
 
@@ -24,7 +20,6 @@ public interface IDataLayerApi
     
     IEnumerable<IEvent> GetAllEvents();
     IEvent GetEvent(int eventId);
-    bool AddEvent(int eventId);
     bool AddEvent(int eventId, int userId, int productId);
     bool UpdateEvent(int eventId, int userId, int productId);
     bool DeleteEvent(int eventId);

@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Data;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Services.API;
 using Services.Data;
 
@@ -12,10 +13,8 @@ public class UserLogicTests
     [TestInitialize]
     public void TestInitialize()
     {
-        _service = new UserService();
-        
-        _service.NukeData();
-        
+        _service = new UserService(new DataRepositoryDummy());
+
         _service.AddUser(0, "John Smith", 32);
     }
     

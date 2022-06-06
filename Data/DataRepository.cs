@@ -9,27 +9,22 @@ public class DataRepository : IDataLayerApi
 {
     private readonly ShopDataContext _context;
     
-    public DataRepository()
+    public DataRepository(ShopDataContext data = default)
     {
-        _context = new ShopDataContext();
+        _context = data ?? new ShopDataContext();
     }
-    
-    public DataRepository(ShopDataContext data)
-    {
-        _context = data;
-    }
-    
-    public IUser Transform(Users user)
+
+    private IUser Transform(Users user)
     {
         return new Customer(user.user_id, user.user_name, user.user_age);
     }
 
-    public IEvent Transform(Events events)
+    private IEvent Transform(Events events)
     {
         return new OrderEvent(events.event_id, events.event_user, events.event_product);
     }
 
-    public IProduct Transform(Products product)
+    private IProduct Transform(Products product)
     {
         return new Product(product.product_id, product.product_name, product.product_description,
             product.product_price);
@@ -96,21 +91,11 @@ public class DataRepository : IDataLayerApi
     public IEvent GetEvent(int eventId)
     {
         var eventDatabase = (from events in _context.Events where events.event_id == eventId select events).FirstOrDefault();
+        // var eventDatabase = _context.Events.FirstOrDefault(@event => @event.event_id == eventId);
+        // var eventDatabase = _context.Events.Where(@event => @event.event_id == eventId).FirstOrDefault();
         return eventDatabase != null ? Transform(eventDatabase) : null;
     }
-
-    public bool AddEvent(int eventId)
-    {
-        if (GetEvent(eventId) != null) return false;
-        var newReader = new Events
-        {
-            event_id = eventId
-        };
-        _context.Events.InsertOnSubmit(newReader);
-        _context.SubmitChanges();
-        return true;
-    }
-
+    
     public bool AddEvent(int eventId, int userId, int productId)
     {
         if (GetEvent(eventId) != null) return false;

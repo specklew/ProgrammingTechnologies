@@ -44,7 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataLayerAPI.cs" />
+    <Compile Include="DataRepositoryDummy.cs" />
+    <Compile Include="IDataLayerAPI.cs" />
     <Compile Include="DataRepository.cs" />
     <Compile Include="Interfaces\IEvent.cs" />
     <Compile Include="Interfaces\IProduct.cs" />

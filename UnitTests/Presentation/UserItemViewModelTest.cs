@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MusicShopTests.Presentation.Dummies;
 using Presentation.ViewModel;
 
 namespace MusicShopTests.Presentation;
@@ -9,7 +10,7 @@ public class UserItemViewModelTest
     [TestMethod]
     public void UserConstructorTest()
     {
-        var userItemViewModel = new UserItemViewModel(0, "name", 20);
+        var userItemViewModel = new UserItemViewModel(0, "name", 20, new UserModelDummy());
 
         Assert.AreEqual(0, userItemViewModel.Id);
         Assert.AreEqual("name", userItemViewModel.Name);

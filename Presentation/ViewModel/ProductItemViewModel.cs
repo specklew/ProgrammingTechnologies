@@ -17,14 +17,14 @@ public class ProductItemViewModel : ViewModelBase
 
     private readonly IProductModel _model;
 
-    public ProductItemViewModel(int id = 0, string name = null, string description = null, int price = 0)
+    public ProductItemViewModel(int id = 0, string name = null, string description = null, int price = 0, IProductModel model = default(ProductModel))
     {
         _id = id;
         _name = name;
         _description = description;
         _price = price;
 
-        _model = new ProductModel();
+        _model = model ?? new ProductModel();
         UpdateCommand = new RelayCommand(_ => { UpdateProduct(); }, _ => CanUpdate);
     }
 

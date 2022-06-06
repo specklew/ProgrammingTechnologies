@@ -10,5 +10,4 @@ public interface IProductService
     bool AddProduct(int productId, string name, string description, int price);
     bool UpdateProduct(int productId, string name, string description, int price);
     bool DeleteProduct(int productId);
-    void NukeData();
 }

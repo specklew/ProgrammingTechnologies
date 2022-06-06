@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Data;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Services.API;
 using Services.Data;
 
@@ -12,10 +13,8 @@ public class ProductLogicTests
     [TestInitialize]
     public void TestInitialize()
     {
-        _service = new ProductService();
-        
-        _service.NukeData();
-        
+        _service = new ProductService(new DataRepositoryDummy());
+
         _service.AddProduct(0, "Harp", "47 strings", 1500);
     }
     

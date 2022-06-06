@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MusicShopTests.Presentation.Dummies;
 using Presentation.ViewModel;
 
 namespace MusicShopTests.Presentation;
@@ -11,7 +12,7 @@ public class MainWindowViewModelTest
     [TestInitialize]
     public void TestInitialize()
     {
-        _viewModel = new MainWindowViewModel();
+        _viewModel = new MainWindowViewModel(new UserListViewModel(new UserModelDummy()));
     }
 
     [TestMethod]
@@ -24,7 +25,7 @@ public class MainWindowViewModelTest
     public void SetViewCorrectly()
     {
         Assert.IsInstanceOfType(_viewModel.SelectedVm, typeof(UserListViewModel));
-        _viewModel.SwitchView("ProductListView");
+        _viewModel.SelectedVm = new ProductListViewModel(new ProductModelDummy());
         Assert.IsInstanceOfType(_viewModel.SelectedVm, typeof(ProductListViewModel));
     }
 }

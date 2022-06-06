@@ -26,22 +26,10 @@ namespace Data.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-P3FAE66R\\MSSQLSERVER_DB;Initial Catalog=PT;Integrated Security" +
-            "=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-P3FAE66R\\MSSQLSERVER_DB;Initial Catalog=PT;Integrated Security=True")]
         public string PTConnectionString {
             get {
                 return ((string)(this["PTConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-P3FAE66R\\MSSQLSERVER_DB;Initial Catalog=PT;Integrated Security" +
-            "=True")]
-        public string PTConnectionString1 {
-            get {
-                return ((string)(this["PTConnectionString1"]));
             }
         }
     }

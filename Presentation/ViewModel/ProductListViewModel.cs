@@ -21,9 +21,9 @@ public class ProductListViewModel : ViewModelBase
     
     private Visibility _isProductViewModelSelectedVisibility;
 
-    public ProductListViewModel()
+    public ProductListViewModel(IProductModel model = default(ProductModel))
     {
-        _model = new ProductModel();
+        _model = model ?? new ProductModel();
         _productViewModels = new ObservableCollection<ProductItemViewModel>();
         
         AddCommand = new RelayCommand(_ => { AddProduct(); },  _ => CanAdd);

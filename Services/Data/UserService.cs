@@ -7,16 +7,11 @@ namespace Services.Data;
 
 public class UserService : IUserService
 {
-    private readonly DataRepository _dataRepository;
+    private readonly IDataLayerApi _dataRepository;
 
-    public UserService()
+    public UserService(IDataLayerApi dataRepository = default)
     {
-        _dataRepository = new DataRepository();
-    }
-    
-    public UserService(DataRepository dataRepository)
-    {
-        _dataRepository = dataRepository;
+        _dataRepository = dataRepository ?? new DataRepository();
     }
 
     private static IUserData Transform(IUser user)
@@ -53,10 +48,5 @@ public class UserService : IUserService
     public bool DeleteUser(int userId)
     {
         return _dataRepository.DeleteUser(userId);
-    }
-    
-    public void NukeData()
-    {
-        _dataRepository.NukeData();
     }
 }

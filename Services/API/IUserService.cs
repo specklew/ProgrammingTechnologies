@@ -9,5 +9,4 @@ public interface IUserService
     bool AddUser(int userId, string userName, int userAge);
     bool UpdateUser(int userId, string userName, int userAge);
     bool DeleteUser(int userId);
-    void NukeData();
 }

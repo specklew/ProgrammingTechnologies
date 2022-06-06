@@ -7,17 +7,11 @@ namespace Services.Data;
 
 public class ProductService : IProductService
 {
-    private readonly DataRepository _dataRepository;
-
-    public ProductService()
-    {
-        _dataRepository = new DataRepository();
-    }
-
+    private readonly IDataLayerApi _dataRepository;
     
-    public ProductService(DataRepository dataRepository)
+    public ProductService(IDataLayerApi dataRepository = default)
     {
-        _dataRepository = dataRepository;
+        _dataRepository = dataRepository ?? new DataRepository();
     }
 
     private static IProductData Transform(IProduct product)
@@ -59,10 +53,5 @@ public class ProductService : IProductService
     public bool DeleteProduct(int productId)
     {
         return _dataRepository.DeleteProduct(productId);
-    }
-    
-    public void NukeData()
-    {
-        _dataRepository.NukeData();
     }
 }

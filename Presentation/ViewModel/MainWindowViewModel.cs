@@ -13,9 +13,9 @@ public class MainWindowViewModel : ViewModelBase
     private ViewModelBase _selectedVm;
     private ICommand _SwitchViewCommand;
 
-    public MainWindowViewModel()
+    public MainWindowViewModel(UserListViewModel selectedVm = default(UserListViewModel))
     {
-        SelectedVm = new UserListViewModel();
+        SelectedVm = selectedVm ?? new UserListViewModel();
         _SwitchViewCommand = new RelayCommand(view => { SwitchView(view.ToString()); });
     }
 

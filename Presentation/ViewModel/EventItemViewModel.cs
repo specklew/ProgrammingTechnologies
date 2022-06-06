@@ -15,14 +15,14 @@ public class EventItemViewModel : ViewModelBase
 
     private readonly IEventModel _model;
 
-    public EventItemViewModel(int id = 0, int userId = 0, int productId = 0, DateTime eventTime = default)
+    public EventItemViewModel(int id = 0, int userId = 0, int productId = 0, DateTime eventTime = default, IEventModel model = default(EventModel))
     {
         _id = id;
         _userId = userId;
         _productId = productId;
         _eventTime = eventTime;
 
-        _model = new EventModel();
+        _model = model ?? new EventModel();
         UpdateCommand = new RelayCommand(_ => { UpdateEvent(); }, _ => CanUpdate);
     }
     

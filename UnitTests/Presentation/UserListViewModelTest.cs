@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MusicShopTests.Presentation.Dummies;
 using Presentation.ViewModel;
 
 namespace MusicShopTests.Presentation;
@@ -12,7 +13,7 @@ public class UserListViewModelTest
     [TestInitialize]
     public void TestInitialize()
     {
-        var userViewModels = new UserListViewModel
+        var userViewModels = new UserListViewModel(new UserModelDummy())
         {
             UserViewModels = new ObservableCollection<UserItemViewModel>
             {

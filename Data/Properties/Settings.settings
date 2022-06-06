@@ -5,7 +5,7 @@
     <Setting Name="PTConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;
 &lt;SerializableConnectionString xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
-  &lt;ConnectionString&gt;Data Source=LAPTOP-P3FAE66R\MSSQLSERVER_DB;Initial Catalog=PT;Integrated Security=True&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=;Initial Catalog=PT;Integrated Security=True&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=LAPTOP-P3FAE66R\MSSQLSERVER_DB;Initial Catalog=PT;Integrated Security=True</Value>

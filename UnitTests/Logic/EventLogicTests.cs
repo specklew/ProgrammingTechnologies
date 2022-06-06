@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Data;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Services.API;
 using Services.Data;
 
@@ -14,11 +15,9 @@ public class EventLogicTests
     [TestInitialize]
     public void TestInitialize()
     {
-        _user = new UserService();
-        _product = new ProductService();
-        _service = new EventService();
-        
-        _service.NukeData();
+        _user = new UserService(new DataRepositoryDummy());
+        _product = new ProductService(new DataRepositoryDummy());
+        _service = new EventService(new DataRepositoryDummy());
 
         _user.AddUser(0, "Joe Doe", 22);
         _product.AddProduct(0, "Harp", "47 strings", 1500);

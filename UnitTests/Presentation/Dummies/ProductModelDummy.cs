@@ -1,31 +1,23 @@
 using System.Collections.Generic;
+using Data.Models;
+using Presentation.Model;
 using Presentation.Model.API;
 using Services.API;
 using Services.Data;
 
-namespace Presentation.Model;
+namespace MusicShopTests.Presentation.Dummies;
 
-internal class ProductModel : IProductModel
+internal class ProductModelDummy : IProductModel
 {
-    internal ProductModel(IProductService service = null)
+    internal ProductModelDummy(IProductService service = null)
     {
         Service = service ?? new ProductService();
+        Products = new List<IProductModelData>();
     }
 
     public IProductService Service { get; }
 
-    public IEnumerable<IProductModelData> Products
-    {
-        get
-        {
-            List<IProductModelData> products = new();
-            foreach (var data in Service.GetAllProducts())
-            {
-                products.Add(new ProductModelData(data.Id, data.Name, data.Description, data.Price));
-            }
-            return products;
-        }
-    }
+    public IEnumerable<IProductModelData> Products { get; }
 
     public bool Add(int id, string name, string description, int age)
     {

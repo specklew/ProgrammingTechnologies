@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MusicShopTests.Presentation.Dummies;
 using Presentation.ViewModel;
 
 namespace MusicShopTests.Presentation;
@@ -12,7 +13,7 @@ namespace MusicShopTests.Presentation;
         [TestInitialize]
         public void TestInitialize()
         {
-            _eventListViewModel = new EventListViewModel
+            _eventListViewModel = new EventListViewModel(new EventModelDummy())
             {
                 EventViewModels = new ObservableCollection<EventItemViewModel>
                 {

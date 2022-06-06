@@ -7,16 +7,11 @@ namespace Services.Data;
 
 public class EventService : IEventService
 {
-    private readonly DataRepository _dataRepository;
+    private readonly IDataLayerApi _dataRepository;
 
-    public EventService()
+    public EventService(IDataLayerApi dataRepository = default)
     {
-        _dataRepository = new DataRepository();
-    }
-    
-    public EventService(DataRepository dataRepository)
-    {
-        _dataRepository = dataRepository;
+        _dataRepository = dataRepository ?? new DataRepository();
     }
 
     private static IEventData Transform(IEvent @event)
@@ -41,11 +36,6 @@ public class EventService : IEventService
         return Transform(_dataRepository.GetEvent(eventId));
     }
 
-    public bool AddEvent(int eventId)
-    {
-        return _dataRepository.AddEvent(eventId);
-    }
-
     public bool AddEvent(int eventId, int userId, int productId)
     {
         return _dataRepository.AddEvent(eventId, userId, productId);
@@ -59,10 +49,5 @@ public class EventService : IEventService
     public bool DeleteEvent(int eventId)
     {
         return _dataRepository.DeleteEvent(eventId);
-    }
-
-    public void NukeData()
-    {
-        _dataRepository.NukeData();
     }
 }
